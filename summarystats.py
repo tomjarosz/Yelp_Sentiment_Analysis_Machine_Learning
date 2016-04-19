@@ -41,7 +41,7 @@ def business_data():
 		print( 'cities_represented', len(list_of_cities), list_of_cities )
 		print( 'list_of_categoreis',len(list_of_categories),list_of_categories )
 
-def business_in_city():
+def business_in_city(category):
 	'''
 	There are 42 cities that have over 100 business. They are:
 	
@@ -59,17 +59,19 @@ def business_in_city():
 	'''
 
 	with open('yelp_academic_dataset_business.json') as data_file:
-		cities = dict()
+		cat_dict = dict()
 		for line in data_file:
 			row = json.loads(line)
 
-			city = row['city']
-			if city not in cities:
-				cities[city] = 1
+			category = row[category]
+			if category not in cat_dict:
+				cat_dict[category] = 1
 			else:
-				cities[city] += 1
-		sorted_cities = sorted(cities.items(), key=operator.itemgetter(1))
-		print(sorted_cities)
+				cat_dict[category] += 1
+		sorted_category = sorted(cat_dict.items(), key=operator.itemgetter(1))
+		print(sorted_category)
+
+
 def user_data():
 	'''
 	Parse throught the user dataset of Yelp and find the summary statistics. Each row is dictionary 
@@ -107,5 +109,6 @@ def reviews_data():
 		print('No Users who reviewed', len(users))
 		print('No of Business who got reviewd', len(business))
 		print('No of reviews', reviews)	
-business_in_city()
+
+business_in_city('state')
 			
