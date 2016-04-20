@@ -1,6 +1,8 @@
 import json
 import operator
 
+data_path = '../yelp_academic_dataset_business.json'
+category_info_path = "cat_public.csv"
 
 def business_data():
 	'''
@@ -10,7 +12,7 @@ def business_data():
 	'city', 'business_id', 'hours', 'state']) 
 	'''
 	
-	with open('yelp_academic_dataset_business.json') as data_file:    
+	with open(data_path) as data_file:    
 		count_of_business = 0
 		count_of_business_chicago = 0
 		type_of_business = set()
@@ -36,10 +38,11 @@ def business_data():
 		list_of_cities = list(cities_represented)
 		list_of_cities.sort()
 
-		print( 'count_of_business',count_of_business )
-		print( 'count_of_business_chicago', count_of_business_chicago )
-		print( 'cities_represented', len(list_of_cities), list_of_cities )
-		print( 'list_of_categoreis',len(list_of_categories),list_of_categories )
+		# print( 'count_of_business',count_of_business )
+		# print( 'count_of_business_chicago', count_of_business_chicago )
+		# print( 'cities_represented', len(list_of_cities), list_of_cities )
+		# print( 'list_of_categoreis',len(type_of_business),type_of_business )
+		return type_of_business
 
 def business_in_city(category):
 	'''
@@ -58,19 +61,20 @@ def business_in_city(category):
 	('Charlotte', 5189), ('Phoenix', 10629), ('Las Vegas', 17423)
 	'''
 
-	with open('yelp_academic_dataset_business.json') as data_file:
+	with open(data_path) as data_file:
 		cat_dict = dict()
 		for line in data_file:
 			row = json.loads(line)
+			
 
-			category = row[category]
-			if category not in cat_dict:
-				cat_dict[category] = 1
+			k = row[category]
+			if k not in cat_dict:
+				cat_dict[k] = 1
 			else:
-				cat_dict[category] += 1
+				cat_dict[k] += 1
 		sorted_category = sorted(cat_dict.items(), key=operator.itemgetter(1))
-		print(sorted_category)
-
+		for key in cat_dict:
+			print(key, cat_dict[key])
 
 def user_data():
 	'''
@@ -79,7 +83,7 @@ def user_data():
 	(['average_stars', 'elite', 'compliments', 'type', 'yelping_since', 'fans', 
 	'review_count', 'name', 'user_id', 'friends', 'votes']
 	'''
-	with open('yelp_academic_dataset_user.json') as data_file:
+	with open(data_path) as data_file:
 
 		user_count = 0
 		for line in data_file:
@@ -88,14 +92,13 @@ def user_data():
 		
 		print( 'user_count',user_count )  
 
-
 def reviews_data():
 	'''
 	Parse throught the user dataset of Yelp and find the summary statistics. Each row is dictionary 
 	with the following keys:
 	(['text', 'date', 'review_id', 'stars', 'business_id', 'votes', 'user_id', 'type'])
 	'''
-	with open('yelp_academic_dataset_review.json') as data_file:
+	with open(data_path) as data_file:
 
 		reviews = 0
 		users   = set()
@@ -110,5 +113,40 @@ def reviews_data():
 		print('No of Business who got reviewd', len(business))
 		print('No of reviews', reviews)	
 
-business_in_city('state')
+def categories_count():
+
+	categories_count = dict()
+	#categories_set=business_data()
+	# for each in categories_set:
+	# 	categories_count[each] = 0
+	with open(category_info_path) as data_file:
+		data_file.readline()
+		for line in data_file:
+			cat = line.strip()
+			categories_count[cat] = 0
+	with open(data_path) as data_file:
+		bus_list=list()
+		for line in data_file:
 			
+			row = json.loads(line)
+
+			category_list = row['categories']
+			business_id = row['business_id']
+			
+
+			#print(category_list)
+			#print("the type is:", type(category_list), "the length is:", len(category_list))
+			#category = category_list.split(',')
+			for cat in category_list:
+				if cat in categories_count and business_id not in business_id_list:
+					categories_count[cat] += 1
+					business_id_list.add()
+
+		sorted_categories_count = sorted(categories_count.items(), key=operator.itemgetter(1))
+		
+		print(sorted_categories_count)
+
+
+#business_in_city('state')
+categories_count()	
+
