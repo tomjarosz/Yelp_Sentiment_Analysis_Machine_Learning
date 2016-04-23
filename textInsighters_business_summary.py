@@ -1,8 +1,12 @@
+# SUMMARY STATISTICS AND PRECLEANSING FOR BUSINESS DATASET
+# MACHINE LEARNING PROJECT: TEXTINSIGHTERS
+# AUTHOR: SIRUI FENG, TURAB HASSAN
+
 import json
 import operator
 
 data_path = '../yelp_academic_dataset_business.json'
-category_info_path = "cat_public.csv"
+public_categories = "cat_public.csv"
 
 def business_data():
 	'''
@@ -26,7 +30,6 @@ def business_data():
 				type_of_business.add(category)
 			
 			city = row['city']
-			#print(city)
 			cities_represented.add(city)
 			if city == '':
 				count_of_business_chicago += 1
@@ -38,10 +41,6 @@ def business_data():
 		list_of_cities = list(cities_represented)
 		list_of_cities.sort()
 
-		# print( 'count_of_business',count_of_business )
-		# print( 'count_of_business_chicago', count_of_business_chicago )
-		# print( 'cities_represented', len(list_of_cities), list_of_cities )
-		# print( 'list_of_categoreis',len(type_of_business),type_of_business )
 		return type_of_business
 
 def business_in_city(category):
@@ -113,40 +112,27 @@ def reviews_data():
 		print('No of Business who got reviewd', len(business))
 		print('No of reviews', reviews)	
 
-def categories_count():
+def public_services():
 
-	categories_count = dict()
-	#categories_set=business_data()
-	# for each in categories_set:
-	# 	categories_count[each] = 0
-	with open(category_info_path) as data_file:
+	categories_dict = dict()
+	public_business_id = set()
+
+	with open(public_categories) as data_file:
 		data_file.readline()
 		for line in data_file:
 			cat = line.strip()
-			categories_count[cat] = 0
+			categories_dict[cat] = 0
+
 	with open(data_path) as data_file:
-		bus_list=list()
+		bus_list = list()
 		for line in data_file:
-			
 			row = json.loads(line)
 
 			category_list = row['categories']
 			business_id = row['business_id']
 			
-
-			#print(category_list)
-			#print("the type is:", type(category_list), "the length is:", len(category_list))
-			#category = category_list.split(',')
 			for cat in category_list:
-				if cat in categories_count and business_id not in business_id_list:
-					categories_count[cat] += 1
-					business_id_list.add()
+				if cat in categories_dict:
+					public_business_id.add(business_id)
 
-		sorted_categories_count = sorted(categories_count.items(), key=operator.itemgetter(1))
-		
-		print(sorted_categories_count)
-
-
-#business_in_city('state')
-categories_count()	
-
+	return public_business_id
