@@ -7,11 +7,15 @@ This file splits each review on periods and conjuctions.
 '''
 
 import re
+import json
+from textblob import TextBlob
+
+public_utilities_path = 'data/public_utilities.json'
 
 def split_period(review):
 	p = re.compile(r'[^\s\.][^\.\n]+')
-	sentence = p.findall(s)
-	return sentence
+	sentences = p.findall(review)
+	return sentences
 
 def split_conjunctions(sentence):
 	conjuctions = [';', 'for', 'and', 'nor', 'but', 'or', 'yet', 'so']
@@ -21,7 +25,23 @@ def split_conjunctions(sentence):
 	return clause
 
 def go():
-	for reiview in d:
-		review = review.lower()
-		sentence = split_period(review)
-		clause = split_conjunctions(sentence)
+	with open(public_utilities_path) as datafile:
+		for line in datafile:
+			row = json.loads(line)
+			review = row["text"]
+			review = review.lower()
+			print("the original review in lower case is:")
+			print(review)
+			sentences = split_period(review)
+			for sentence in sentences:
+				clause = split_conjunctions(sentence)
+				print("the clause is:")
+				print(clause)
+				for c in clause:
+					blob = TextBlob(c)
+					for sentence in blob.sentences:
+						print(sentence)
+						print("score:", sentence.sentiment.polarity)
+						print()
+			break
+go()

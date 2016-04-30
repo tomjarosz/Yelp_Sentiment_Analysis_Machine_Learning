@@ -10,19 +10,6 @@ user_data_path = '../yelp_academic_dataset_user.json'
 review_data_path = '../yelp_academic_dataset_review.json'
 public_categories = 'cat_public.csv'
 
-'''
-public_categories_dict = {'Art Galleries':0, 'Assisted Living Facilities':0, \
-'Basketball Courts':0, 'Bike Rentals':0, 'Blood & Plasma Donation Centers':0, \
-'Cannabis Clinics':0, 'Castles':0, 'Dog Parks':0, 'Emergency Rooms':0, \
-'Food Banks':0, 'Hospice':0, 'Hospitals':0, 'Marinas':0, 'Museums':0, \
-'RV Parks':0, 'Retirement Homes':0, 'Souvenir Shops':0, 'Stadiums & Arenas':0, \
-'Airport Lounges':0, 'Airport Shuttles':0, 'Airports':0, 'Amusement Parks':0, \
-'Animal Shelters':0, 'Aquarium Services':0, 'Aquariums':0, 'Beaches':0, \
-'Botanical Gardens':0, 'Churches':0, 'Community Centers':0, 'Community Gardens':0, \
-'Libraries':0, 'Public Services & Government':0, 'Public Transportation':0, \
-'Train Stations':0, 'Trains':0, 'Zoos':0}
-'''
-
 def business_data():
 	'''
 	Parse throught the business dataset of Yelp and find the summary statistics.
@@ -170,9 +157,4 @@ def public_services():
 					public_business_id.add(business_id)
 					count += 1
 					break
-
-
 	return public_business_id
-
-
-public_services()
