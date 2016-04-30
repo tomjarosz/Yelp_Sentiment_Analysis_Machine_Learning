@@ -5,8 +5,11 @@
 import json
 import operator
 
-data_path = '../yelp_academic_dataset_business.json'
+business_data_path = '../yelp_academic_dataset_business.json'
+user_data_path = '../yelp_academic_dataset_user.json'
+review_data_path = '../yelp_academic_dataset_review.json'
 public_categories = 'cat_public.csv'
+
 '''
 public_categories_dict = {'Art Galleries':0, 'Assisted Living Facilities':0, \
 'Basketball Courts':0, 'Bike Rentals':0, 'Blood & Plasma Donation Centers':0, \
@@ -23,12 +26,14 @@ public_categories_dict = {'Art Galleries':0, 'Assisted Living Facilities':0, \
 def business_data():
 	'''
 	Parse throught the business dataset of Yelp and find the summary statistics.
-	Each row is dictionary with the following Keys (['categories', 'open', 'full_address', 
+	Each row is dictionary with the following Keys 
+
+	(['categories', 'open', 'full_address', 
 	'type', 'latitude', 'stars', 'review_count', 'longitude', 'name', 'attributes', 'neighborhoods',
 	'city', 'business_id', 'hours', 'state']) 
 	'''
 	
-	with open(data_path) as data_file:    
+	with open(business_data_path) as data_file:    
 		count_of_business = 0
 		count_of_business_chicago = 0
 		type_of_business = set()
@@ -57,6 +62,9 @@ def business_data():
 
 def business_in_city(category):
 	'''
+
+	Generates a dictionary recording the number of business in each city in the db.
+
 	There are 42 cities that have over 100 business. They are:
 	
 	('Sun City', 106), ('Litchfield Park', 110), ('Sun Prairie', 114), ('Anthem', 123), 
@@ -72,7 +80,7 @@ def business_in_city(category):
 	('Charlotte', 5189), ('Phoenix', 10629), ('Las Vegas', 17423)
 	'''
 
-	with open(data_path) as data_file:
+	with open(business_data_path) as data_file:
 		cat_dict = dict()
 		for line in data_file:
 			row = json.loads(line)
@@ -86,6 +94,7 @@ def business_in_city(category):
 		sorted_category = sorted(cat_dict.items(), key=operator.itemgetter(1))
 		for key in cat_dict:
 			print(key, cat_dict[key])
+	return cat_dict
 
 def user_data():
 	'''
@@ -94,7 +103,7 @@ def user_data():
 	(['average_stars', 'elite', 'compliments', 'type', 'yelping_since', 'fans', 
 	'review_count', 'name', 'user_id', 'friends', 'votes']
 	'''
-	with open(data_path) as data_file:
+	with open(user_data_path) as data_file:
 
 		user_count = 0
 		for line in data_file:
@@ -107,9 +116,10 @@ def reviews_data():
 	'''
 	Parse throught the user dataset of Yelp and find the summary statistics. Each row is dictionary 
 	with the following keys:
+
 	(['text', 'date', 'review_id', 'stars', 'business_id', 'votes', 'user_id', 'type'])
 	'''
-	with open(data_path) as data_file:
+	with open(review_data_path) as data_file:
 
 		reviews = 0
 		users   = set()
@@ -125,6 +135,10 @@ def reviews_data():
 		print('No of reviews', reviews)	
 
 def public_services():
+	'''
+	Generates a list of business_id (1943) that belong to a public service category (36).
+
+	'''
 
 	categories_dict = dict()
 	public_business_id = set()
@@ -135,13 +149,20 @@ def public_services():
 			cat = line.strip()
 			categories_dict[cat] = 0
 
-	with open(data_path) as data_file:
+	with open(business_data_path) as data_file:
 		bus_list = list()
 		for line in data_file:
 			row = json.loads(line)
 
 			category_list = row['categories']
 			business_id = row['business_id']
+			if 'Public Services & Government' in category_list:
+				categories_dict['Public Services & Government']+=1
+			else:
+				for cat in category_list:
+					if cat in categories_dict:
+						categories_dict[cat]+=1
+						break
 
 			
 			for cat in category_list:
@@ -150,4 +171,8 @@ def public_services():
 					count += 1
 					break
 
+
 	return public_business_id
+
+
+public_services()
