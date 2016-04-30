@@ -9,7 +9,7 @@ def reviews_data(list_of_businessids):
 	with the following keys:
 	(['text', 'date', 'review_id', 'stars', 'business_id', 'votes', 'user_id', 'type'])
 	'''
-	with open(reviews_path) as reviews_file:
+	with open(reviews_path) as reviews_file, open('public_utilities.json', 'w') as public_utilities_file:
 
 		business_info = {}
 		reviews_count   = 0
@@ -21,9 +21,19 @@ def reviews_data(list_of_businessids):
 			user_id = row['user_id']
 			stars = row['stars']
 			
+			#When we find a business we have already seen
+			try:
+				business_info[business_id]['public_utility'] = False
+			#When we see a business for the first time, add an entry to the dictionary
+			except KeyError:	
+				business_info[business_id] = {}
+				business_info[business_id]['public_utility'] = False
+				business_info[business_id]['reviews'] = []
+			
 			if business_id in list_of_businessids:
 				#print(business_id)
-				business_info[business_id] = {}
+				business_info[business_id]['public_utility'] = True
+				business_info[business_id]['reviews'].append(review_id)
 				business_info[business_id]['review_count'] = business_info[business_id].get('review_count',1) + 1
 
 				if stars == 1:
@@ -37,7 +47,16 @@ def reviews_data(list_of_businessids):
 				else :
 					business_info[business_id]['five_star'] = business_info[business_id].get('five_star',1) + 1
 
+				#json.dump(line, public_utilities_file)
+				public_utilities_file.write(line)
+				#public_utilities_file.write('\n')	
 				reviews_count += 1
+
+		#Emptying the dictionary of the business which we think are not public utilities
+
+		for key in list(business_info):
+			if business_info[key]['public_utility'] == False:
+				business_info.pop(key,None)
 
 
 		print('No Reviews', reviews_count)
