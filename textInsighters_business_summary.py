@@ -8,8 +8,8 @@ import operator
 business_data_path = '../yelp_academic_dataset_business.json'
 user_data_path = '../yelp_academic_dataset_user.json'
 review_data_path = '../yelp_academic_dataset_review.json'
-public_categories = 'cat_public.csv'
-
+public_categories = 'data/cat_public.csv'
+relevant_states = ['PA','NC','IL','AZ','NV','WI']
 def business_data():
 	'''
 	Parse throught the business dataset of Yelp and find the summary statistics.
@@ -47,9 +47,12 @@ def business_data():
 
 		return type_of_business
 
+
+#Modify this into a generic function. 
 def business_in_city(category):
 	'''
-
+	There are actually not a lot of cities but there are problems of spellings and
+	subrubs or different areas of the cities are categorized differently
 	Generates a dictionary recording the number of business in each city in the db.
 
 	There are 42 cities that have over 100 business. They are:
@@ -69,19 +72,21 @@ def business_in_city(category):
 
 	with open(business_data_path) as data_file:
 		cat_dict = dict()
+		categories = set()
 		for line in data_file:
 			row = json.loads(line)
-			
-
 			k = row[category]
 			if k not in cat_dict:
 				cat_dict[k] = 1
 			else:
 				cat_dict[k] += 1
+			categories.add(k)	
 		sorted_category = sorted(cat_dict.items(), key=operator.itemgetter(1))
-		for key in cat_dict:
-			print(key, cat_dict[key])
-	return cat_dict
+		print(categories)
+		print(cat_dict)
+		#for key in cat_dict:
+		#	print(key, cat_dict[key])
+	#return cat_dict
 
 def user_data():
 	'''
@@ -123,8 +128,8 @@ def reviews_data():
 
 def public_services():
 	'''
-	Generates a list of business_id (1943) that belong to a public service category (36).
-
+	Generates a list of business_ids (1943) that belong to a public service category (36).
+	And also list of states in which those business occur
 	'''
 
 	categories_dict = dict()
@@ -143,6 +148,7 @@ def public_services():
 
 			category_list = row['categories']
 			business_id = row['business_id']
+			state = row['state']
 			if 'Public Services & Government' in category_list:
 				categories_dict['Public Services & Government']+=1
 			else:
@@ -153,8 +159,13 @@ def public_services():
 
 			
 			for cat in category_list:
-				if cat in categories_dict:
+				if cat in categories_dict and state in relevant_states:
 					public_business_id.add(business_id)
 					count += 1
 					break
+	print(count)
+	#print(public_business_id)				
 	return public_business_id
+
+#business_in_city('state')
+public_services()
