@@ -2,11 +2,16 @@ import json
 from textInsighters_business_summary import *
 
 reviews_path = '../yelp_academic_dataset_review.json'
+relevant_states = ['PA','NC','IL','AZ','NV','WI']
 
 def reviews_data(list_of_businessids):
 	'''
-	Parse throught the user dataset of Yelp and find the summary statistics. Each row is dictionary 
-	with the following keys:
+	Parse throught the reviews dataset of Yelp and output a subset of reviews which are of public utilities.
+	The function receives a list of business IDs of public utilites.
+	It also creates a dictionary of dictionarys of business info in which the outer key is 'business_id'
+	and the inner keys are: 'reviews'(list of review IDs), 'review_count'(count of reviews for the Business)
+	'one_star', 'two_star', 'three_star', 'four_star', 'five_star' (the count of reviews by star) 
+	
 	(['text', 'date', 'review_id', 'stars', 'business_id', 'votes', 'user_id', 'type'])
 	'''
 	with open(reviews_path) as reviews_file, open('public_utilities.json', 'w') as public_utilities_file:
