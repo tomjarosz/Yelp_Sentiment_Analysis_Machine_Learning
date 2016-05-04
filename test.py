@@ -10,7 +10,7 @@ with open(public_utilities_path) as datafile:
 		if business_id not in b_set:
 			rv.append(row)
 			b_set.add(business_id)
-			if len(b_set)==5:
+			if len(b_set)==10:
 				break
 with open('data/training.txt','w') as f:
 	for each in rv:
