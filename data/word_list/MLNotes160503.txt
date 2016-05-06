@@ -1,0 +1,87 @@
+# Machine Learning
+Date: 2016-05-03
+
+## Supervised learning
+  * Inputs: some x values; some y values where y is the label
+  * Outputs:
+  * Objective: estimate theta values based on minimizing some value
+    * that value could be mean squared error
+  * Notes
+    * Difference between linear vs. nonlinear SVM is the different loss functions
+    * Loss functions
+      * 0-1 loss function:
+        * Loss = 1 for inaccurate guesses
+        * Loss = 0 for accurate guesses
+        * doesn't work well because we don't get any confidence measures
+      * Logistic regression:
+        * curved shape
+      * SVM function:
+        * hinge
+      * Regression loss
+        * parabola
+        * not pertinent for classification
+    * import scikitlearn datasets that will let you generate datasets
+      * run different clustering algorithms, play around with the parameters
+
+## Unsupervised learning
+  * Input: only x values; no y values where y is the label
+  * Outputs:
+  * Objective: minimize some loss function
+    * various loss functions for unsupervised learning compress the data points in some way
+      * for example, maximize the log likelihood of capturing our data
+        * we do this by using the frequency of each value in our data
+        * log is only simplifying the computation
+        * maximize likelihood is fundamental to machine learning
+          * we are almost always trying to maximize likelihood
+  * Models
+    * k-means
+      * start with k random points
+      * assign each data point to the nearest centroid
+      * move the k centroids to the center of all its assigned data points
+      * find some threshold to stop
+      * loss function: sum of squared distance from respective centroid
+        * impossible/expensive to compute/solve; we estimate
+    * mixture model
+      * derived from gaussian but more involved
+      * if it's heads, we generate a gaussian with one set of mean and std
+      * if it's tails, we generate a gaussian with a different set of mean and std
+      * enables us to have a bimodal distribution
+      * our job then is to find:
+        * probability of heads and tails
+        * the paramaters for each of the gaussian that we want
+      * EM algorithm (expected m...) enables us to do this
+      * k-means employs a similar fundamental model, but don't care about probability
+      * enables us to generate clusters,
+        * which could lead to labeling and feature extraction
+      * gradient descent algorithm: work for all of these models
+        * workhorse of deep learning
+    * comparing k-means and mixture model
+      * because mixture model incorporates the variance, it can provide better clusters that fit the model if we have distinct, but separate clusters close to each other
+        * gaussian w/ covariance (not great for curved clusters)
+          * diagonal; fullp spherical; etc.
+      * k-means are going to be faster if we don't care about variance
+        * works best with spherical data
+    * graph model
+      * min cut: cut the least amount of edges
+      * normalized min cut:
+      * used when our data comes in the form of a graph
+      * spectral clustering: enable us to find clusters of curved clusters
+        * can set bandwidth of kernal (scikit learn calls it gamma)
+          * bandwidth = 1 / sqrt(gamma)
+    * SVM
+      * linear: when we think we can split the data by a line, or a plane
+      * kernel: ...
+    * mean shift
+      * algorithm:
+        * pick a sample
+        * look at some neighborhood around picked sample
+          * things close to this point will be important and a gaussian distribution/weight is applied
+        * calculate a weighted mean
+        * compare the picked sample and the weighted mean, move to the weighted mean
+        * look at some neighborhood around the new picked spot
+          * things close to this point will be important...
+        * we'll stop until we've found a center that won't get moved
+        * if we do this for all the training data samples, we'll get all the cluster discovered
+      * enable us to not have to specify the clusters
+    * agglomerative clustering
+      * starts with each sample being its own cluster and aggregates them to a specified threshold
