@@ -1,9 +1,11 @@
 a
 about
 above
+absolutely
 according
 accordingly
 across
+actual
 actually
 after
 afterwards
@@ -37,6 +39,8 @@ asking
 at
 away
 b
+basic
+basically
 be
 became
 become
@@ -45,6 +49,9 @@ becoming
 been
 before
 beforehand
+began
+begin
+begun
 behind
 being
 beside
@@ -52,18 +59,20 @@ besides
 between
 beyond
 both
-but
 by
 c
 came
 can
 cannot
 cant
+certainly
 changes
 co
 com
 come
 comes
+complete
+completely
 contain
 containing
 contains
@@ -71,6 +80,8 @@ corresponding
 course
 currently
 d
+definite
+definitely
 described
 did
 do
@@ -96,6 +107,8 @@ ex
 exactly
 example
 f
+feel
+felt
 fifth
 first
 five
@@ -103,10 +116,13 @@ followed
 following
 follows
 for
+for all intents and purposes
 forth
 four
 from
 g
+general
+generally
 get
 gets
 getting
@@ -143,13 +159,13 @@ hither
 hopefully
 how
 howbeit
-however
-i
 ie
 if
 ignored
 immediate
 in
+individual
+in general
 inasmuch
 inc
 indeed
@@ -166,13 +182,16 @@ it
 its
 itself
 j
+just
 k
 keep
 keeps
 kept
+kind of
 l
 lest
 let
+literally
 look
 looking
 looks
@@ -207,16 +226,22 @@ p
 particular
 particularly
 per
+perhaps
 placed
 plus
+ponder
+probably
 provides
 q
 que
+quite
 qv
 r
 rather
 rd
 re
+realize
+really
 regarding
 regards
 respectively
@@ -254,7 +279,10 @@ sometime
 sometimes
 somewhat
 somewhere
-still
+sort of
+specific
+specifically
+stop
 sub
 such
 sup
@@ -281,12 +309,15 @@ theres
 thereupon
 these
 they
+think
+thinks
+thinking
 third
 this
 thorough
 thoroughly
 those
-though
+thought
 three
 through
 throughout
@@ -296,12 +327,15 @@ to
 together
 too
 took
+totally
 toward
 towards
 twice
 two
+type of
 u
 un
+understand
 unto
 up
 upon
@@ -310,6 +344,7 @@ uucp
 v
 various
 via
+virtually
 viz
 vs
 w
@@ -332,7 +367,6 @@ whereupon
 wherever
 whether
 which
-while
 whither
 who
 whoever
@@ -346,11 +380,8 @@ wish
 with
 within
 without
+wondor
 x
 y
-you
-your
-yours
-yourself
-yourselves
+yelp
 z

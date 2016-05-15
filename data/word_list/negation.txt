@@ -1,3 +1,5 @@
+aint
+ain't
 not
 doesn't
 doesnt
@@ -24,6 +26,6 @@ aren't
 arent
 can't
 cant
-arent
+cannot
 couldn't
 couldnt
