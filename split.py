@@ -1,5 +1,5 @@
 # Author: Sirui Feng
-# Sentence split on periods and conjunctions.
+# Sentence split on periods.
 
 
 '''
@@ -11,6 +11,7 @@ import json
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
 import csv
+from word_stemmer import word_stemmer
 
 public_utilities_path = 'data/public_utilities.json'
 
@@ -25,27 +26,6 @@ def split_conjunctions(sentence):
 	clause = [x.strip() for x in clause]
 	clause = [x for x in clause if len(x) != 0]
 	return clause
-
-def go():
-	with open(public_utilities_path) as datafile:
-		for line in datafile:
-			row = json.loads(line)
-			review = row["text"]
-			review = review.lower()
-			print("the original review in lower case is:")
-			print(review)
-			sentences = split_period(review)
-			for sentence in sentences:
-				clause = split_conjunctions(sentence)
-				print("the clause is:")
-				print(clause)
-				for c in clause:
-					blob = TextBlob(c)
-					for sentence in blob.sentences:
-						print(sentence)
-						print("score:", sentence.sentiment.polarity)
-						print()
-			break
 
 def get_training():
 	with open(public_utilities_path) as datafile:
@@ -68,6 +48,7 @@ def get_training():
 				for s in sentences:
 					blob = TextBlob(s, analyzer = NaiveBayesAnalyzer())
 					polarity = blob.polarity
+					s = word_stemmer(s)
 
 					writer.writerow({'review_id':row['review_id'], \
 						'business_id': row['business_id'], \

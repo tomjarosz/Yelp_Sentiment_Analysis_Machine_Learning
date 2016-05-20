@@ -1,4 +1,8 @@
+#Author: Tom
+
 from nltk.stem.porter import *
+import csv
+
 
 def word_stemmer(sentence):
 
