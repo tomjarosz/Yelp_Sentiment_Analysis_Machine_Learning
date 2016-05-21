@@ -7,6 +7,11 @@
 	# when passing just polarity: accuracy score is 74.5098%
 	# when passing just the complaint_words: accurayc score is 75.4902%
 		# .9% increase in a accuracy!
+	# stemmed words and features
+	# don't think polarity matters
+	# compliments.txt not helpful
+	# tom's models won on complaints and suggestions (even without the keywords)
+	# sirui's model won on compliments (without the keywords)
 
 import pandas as pd
 import numpy as np
@@ -44,7 +49,6 @@ def read_csv_to_df(filename):
 	df = []
 	df = pd.read_csv(filename, encoding = 'cp1252')
 	df['stem_review'] = df.apply(lambda row: stemmer(row), axis=1)
-
 
 	return df
 
@@ -95,8 +99,8 @@ def naivebayes_model(train, test, y_label, word_list, stopwords, polarity_inc = 
 	train_y_values = np.asarray(train[y_label])
 
 	#clf = GaussianNB()
-	#clf = MultinomialNB()
-	clf = BernoulliNB()
+	clf = MultinomialNB()
+	#clf = BernoulliNB()
 
 	clf.fit(train_x_vector, train_y_values)
 
