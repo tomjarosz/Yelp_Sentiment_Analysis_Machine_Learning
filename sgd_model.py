@@ -3,6 +3,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.decomposition import PCA
 from sklearn.cross_validation import train_test_split
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
+from sklearn.linear_model import SGDClassifier
 from sklearn import metrics, svm
 from word_stemmer import word_stemmer
 import csv
@@ -83,20 +84,19 @@ def get_predictions(clf, X_train, Y_train, X_test):
 
     return Y_predict
 
-def SVMClf(training_df, testing_df):
+def SGDClf(training_df, testing_df):
 
     labels = ['complaints', 'suggestions for user', 'compliments', 'neutral', 'suggestion for busn']
     for label in labels:
 
         X_train, X_test, Y_train, Y_true = get_X_and_Y(training_df, testing_df, label)
 
-        clf = svm.LinearSVC()
+        clf =  SGDClassifier()
         clf.fit(X_train,Y_train)
         Y_predict = get_predictions(clf, X_train, Y_train, X_test)
 
 
         print(metrics.accuracy_score(Y_true, Y_predict))
-
 
 
 if __name__ == '__main__':
@@ -105,4 +105,4 @@ if __name__ == '__main__':
     #print(df.shape)
     df_original = df.copy()
     training_df, testing_df = split_training_testing(df)
-    SVMClf(training_df, testing_df)
+    SGDClf(training_df, testing_df)
