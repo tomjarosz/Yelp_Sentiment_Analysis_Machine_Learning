@@ -11,11 +11,26 @@ from word_stemmer import word_stemmer
 import csv
 import numpy as np
 import pandas as pd
+import time
 
-inputfile_path = 'data/labeled_overlap_data.csv'
+inputfile_path = 'data/training_scored.csv'
+
+labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
+models_dict = {}
+
+complaint_kwords = list(set(open("data/word_list/complaints.txt").read().splitlines()))
+compliments_kwords = list(set(open("data/word_list/compliments.txt").read().splitlines()))
+suggestions_busn_kwords = list(set(open("data/word_list/suggestion_busn.txt").read().splitlines()))
+suggestions_user_kwords = list(set(open("data/word_list/suggestion_user.txt").read().splitlines()))
+
+models_dict['complaint'] = complaint_kwords
+models_dict['compliments'] = complaint_kwords
+models_dict['suggestion for user'] = suggestions_user_kwords
+models_dict['suggestion for business'] = suggestions_user_kwords
+models_dict['neutral'] = list()
 
 def read_data(inputfile_path):
-	df = pd.read_csv(inputfile_path)
+	df = pd.read_csv(inputfile_path, encoding='cp1252')
 
 	df['stem_review'] = df.apply(lambda row: stemmer(row), axis=1)
 
@@ -42,8 +57,9 @@ def split_training_testing(df):
 	training_df, testing_df = train_test_split(df, test_size = 0.2, random_state = 0)
 	return training_df, testing_df
 
-def vectorize_X(training_df, testing_df, tfidf=True):
+def vectorize_X(training_df, testing_df, vocabulary, tfidf=True):
 	stopwords = get_stopwords()
+	#vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word', vocabulary = vocabulary)
 	vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word')
 		
 	X_train = vectorizer.fit_transform(training_df['review'])
@@ -63,7 +79,9 @@ def get_X_and_Y(training_df, testing_df, label):
 
 	X_test = testing_df['review']
 
-	X_train, X_test = vectorize_X(training_df, testing_df)
+	vocabulary = models_dict[label]
+
+	X_train, X_test = vectorize_X(training_df, testing_df, vocabulary)
 	print("~~~~~~~~~~~~~~~~~~~~~")
 	#print(X_train)
 	print(X_train.shape)
@@ -89,8 +107,9 @@ def get_predictions(clf, X_train, Y_train, X_test):
 
 
 def NaiveBayesClf(training_df, testing_df):
+	labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
 
-	labels = ['complaints', 'suggestions for user', 'compliments', 'neutral', 'suggestion for busn']
+	#labels = ['complaint', 'suggestion for user', 'compliments', 'neutral', 'suggestion for business']
 	for label in labels:
 
 		X_train, X_test, Y_train, Y_true = get_X_and_Y(training_df, testing_df, label)
@@ -98,6 +117,8 @@ def NaiveBayesClf(training_df, testing_df):
 		clf = MultinomialNB()
 		clf.fit(X_train,Y_train)
 		Y_predict = get_predictions(clf, X_train, Y_train, X_test)
+		print("Baseline:", 1-Y_true.mean())
+		print()
 
 
 		print(metrics.accuracy_score(Y_true, Y_predict))
@@ -107,10 +128,14 @@ def NaiveBayesClf(training_df, testing_df):
 if __name__ == '__main__':
 
 	df = read_data(inputfile_path)
+	#print(df.describe())
 	#print(df.shape)
 	df_original = df.copy()
 	training_df, testing_df = split_training_testing(df)
+	start_time = time.time()
 	NaiveBayesClf(training_df, testing_df)
+	end_time = time.time()
+	print("Naive Bayes takes", end_time-start_time, "seconds")
 
 
 
