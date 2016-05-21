@@ -20,7 +20,6 @@ absentee
 absurd
 absurdity
 abuse
-abuse
 abyss
 accident
 accost
@@ -1721,4 +1720,5 @@ wrinkle
 writhe
 wrongful
 wrought
-yearnyawn
+yearn
+yawn

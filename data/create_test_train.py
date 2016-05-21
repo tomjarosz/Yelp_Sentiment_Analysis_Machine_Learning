@@ -16,9 +16,10 @@ def create_test_train(filename, data_level):
 	data_left, hidden = train_test_split(data_id, test_size = 0.1, random_state = 0)
 	data_left, manual_train = train_test_split(data_left, test_size = 0.11, random_state = 0)
 
-	data_left.to_csv("data_left.csv", header = True)
-	hidden.to_csv("hidden.csv", header = True)
-	manual_train.to_csv("manual_train.csv", header = True)
+	#data_left.to_csv("data_left.csv", header = True)
+	#hidden.to_csv("hidden.csv", header = True)
+	#manual_train.to_csv("manual_train.csv", header = True)
+
 
 	return data_left, hidden, manual_train
 
