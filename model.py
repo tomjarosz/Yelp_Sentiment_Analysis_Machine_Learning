@@ -18,8 +18,9 @@ from sklearn import (preprocessing, cross_validation, svm, metrics, tree,
     decomposition, svm)
 
 import csv
+from word_stemmer import word_stemmer
 
-labels = ['complaints', 'compliments', 'suggestions for user', 'suggestion for busn']
+labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
 models_dict = {}
 
 complaint_kwords = list(set(open("data/word_list/complaints.txt").read().splitlines()))
@@ -27,17 +28,36 @@ compliments_kwords = list(set(open("data/word_list/compliments.txt").read().spli
 suggestions_busn_kwords = list(set(open("data/word_list/suggestion_busn.txt").read().splitlines()))
 suggestions_user_kwords = list(set(open("data/word_list/suggestion_user.txt").read().splitlines()))
 
-models_dict['complaints'] = complaint_kwords
-models_dict['compliments'] = complaint_kwords
-models_dict['suggestions for user'] = suggestions_user_kwords
-models_dict['suggestion for busn'] = suggestions_user_kwords
+models_dict['complaint'] = complaint_kwords
+models_dict['compliments'] = compliments_kwords
+models_dict['suggestion for user'] = suggestions_user_kwords
+models_dict['suggestion for business'] = suggestions_busn_kwords
+
+def stemmer(row):
+	review = row['review']
+	stem_review = word_stemmer(review)
+
+	return stem_review
 
 
 def read_csv_to_df(filename):
 	df = []
-	df = pd.read_csv(filename)
+	df = pd.read_csv(filename, encoding = 'cp1252')
+	df['stem_review'] = df.apply(lambda row: stemmer(row), axis=1)
+
 
 	return df
+
+def get_stopwords():
+	'''
+	Provides a list of stop words.
+	There are 387 stopwords in total.
+	'''
+	with open('data/word_list/stoplists.csv', 'r') as f:
+		stopwords = list()
+		for line in f:
+			stopwords.append(line.strip())
+	return stopwords
 
 
 def train_test(df, y_label):
@@ -54,10 +74,10 @@ def train_test(df, y_label):
 	return train, test
 
 
-def naivebayes_model(train, test, y_label, word_list, polarity_inc = True):
-	cv = CountVectorizer(vocabulary = word_list)
-	train_x_vector = cv.fit_transform(list(train['review'])).toarray()
-	test_x_vector = cv.fit_transform(list(test['review'])).toarray()
+def naivebayes_model(train, test, y_label, word_list, stopwords, polarity_inc = True):
+	cv = CountVectorizer(vocabulary = word_list, stop_words = stopwords, ngram_range = (1,2), analyzer = 'word')
+	train_x_vector = cv.fit_transform(list(train['stem_review'])).toarray()
+	test_x_vector = cv.fit_transform(list(test['stem_review'])).toarray()
 
 
 	if polarity_inc:
@@ -74,7 +94,10 @@ def naivebayes_model(train, test, y_label, word_list, polarity_inc = True):
 	
 	train_y_values = np.asarray(train[y_label])
 
-	clf = GaussianNB()
+	#clf = GaussianNB()
+	#clf = MultinomialNB()
+	clf = BernoulliNB()
+
 	clf.fit(train_x_vector, train_y_values)
 
 	# prediction
@@ -87,9 +110,16 @@ def naivebayes_model(train, test, y_label, word_list, polarity_inc = True):
 
 if __name__ == '__main__':
 
-	df = read_csv_to_df("data/labeled_overlap_data.csv")
+	df = read_csv_to_df("data/training_scored.csv")
+
+	stopwords = get_stopwords()
 
 	for key in models_dict:
 		print(key)
 		train, test = train_test(df, key)
-		naivebayes_model(train, test, key, models_dict[key])
+		word_list = []
+		for val in models_dict[key]:
+			stem = word_stemmer(val)
+			if stem not in word_list:
+				word_list.append(stem)
+		naivebayes_model(train, test, key, word_list, stopwords, False)
