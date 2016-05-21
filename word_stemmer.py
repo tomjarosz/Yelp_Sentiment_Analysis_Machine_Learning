@@ -3,10 +3,14 @@
 from nltk.stem.porter import *
 import csv
 
+def word_stemmer(file_name):
 
-def word_stemmer(sentence):
+    f = open(file_name)
+    csv_file = csv.reader(f)
 
-    for word in sentence.split(" "):
-        PorterStemmer().stem_word(word)
-        stem_sentence = " ".join(PorterStemmer().stem_word(word) for word in sentence.split(" "))
-    return stem_sentence
+    for review in csv_file[5]:
+        for word in review.split(" "):
+            PorterStemmer().stem_word(word)
+            stem_sentence = " ".join(PorterStemmer().stem_word(word) for word in sentence.split(" "))
+        review = stem_sentence
+    return csv_file
