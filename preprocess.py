@@ -62,8 +62,8 @@ def vectorize_X(training_df, testing_df, vocabulary, tfidf=True):
 	#vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word', vocabulary = vocabulary)
 	vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word')
 		
-	X_train = vectorizer.fit_transform(training_df['review'])
-	X_test = vectorizer.transform(testing_df['review'])
+	X_train = vectorizer.fit_transform(training_df['stem_review'])
+	X_test = vectorizer.transform(testing_df['stem_review'])
 
 	if tfidf:
 
@@ -75,9 +75,9 @@ def vectorize_X(training_df, testing_df, vocabulary, tfidf=True):
 
 def get_X_and_Y(training_df, testing_df, label):
 	
-	X_train = training_df['review']
+	X_train = training_df['stem_review']
 
-	X_test = testing_df['review']
+	X_test = testing_df['stem_review']
 
 	vocabulary = models_dict[label]
 
