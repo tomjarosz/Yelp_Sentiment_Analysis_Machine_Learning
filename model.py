@@ -39,6 +39,17 @@ def read_csv_to_df(filename):
 
 	return df
 
+def get_stopwords():
+	'''
+	Provides a list of stop words.
+	There are 387 stopwords in total.
+	'''
+	with open('data/word_list/stoplists.csv', 'r') as f:
+		stopwords = list()
+		for line in f:
+			stopwords.append(line.strip())
+	return stopwords
+
 
 def train_test(df, y_label):
 	if y_label in labels:
@@ -54,8 +65,8 @@ def train_test(df, y_label):
 	return train, test
 
 
-def naivebayes_model(train, test, y_label, word_list, polarity_inc = True):
-	cv = CountVectorizer(vocabulary = word_list)
+def naivebayes_model(train, test, y_label, word_list, stopwords, polarity_inc = True):
+	cv = CountVectorizer(vocabulary = word_list, stop_words = stopwords, ngram_range = (1,2), analyzer = 'word')
 	train_x_vector = cv.fit_transform(list(train['review'])).toarray()
 	test_x_vector = cv.fit_transform(list(test['review'])).toarray()
 
@@ -89,7 +100,9 @@ if __name__ == '__main__':
 
 	df = read_csv_to_df("data/labeled_overlap_data.csv")
 
+	stopwords = get_stopwords()
+
 	for key in models_dict:
 		print(key)
 		train, test = train_test(df, key)
-		naivebayes_model(train, test, key, models_dict[key])
+		naivebayes_model(train, test, key, models_dict[key], stopwords, False)
