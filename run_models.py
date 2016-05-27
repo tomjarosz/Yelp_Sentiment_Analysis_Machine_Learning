@@ -10,6 +10,7 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.cross_validation import train_test_split
 from sklearn.grid_search import ParameterGrid
+from sklearn.linear_model import SGDClassifier
 from sklearn import preprocessing, cross_validation, svm, metrics, tree, decomposition, svm
 from sklearn.metrics import precision_recall_curve
 from sklearn.feature_extraction.text import CountVectorizer
@@ -24,11 +25,11 @@ def run_models():
 
     clfs = {'SVM': svm.LinearSVC(random_state=0, dual=False),
             'SGD': SGDClassifier(loss="hinge", penalty="l2"),
-            'NBMultinomial': MultinomialNB(alpha=1, fit_prior=True, class_prior=None)
-            'NBGaussian': GaussianNB()
+            'NBMultinomial': MultinomialNB(alpha=1, fit_prior=True, class_prior=None),
+            'NBGaussian': GaussianNB(),
             'NBBernoulli': BernoulliNB(alpha=1, binarize=0.0, fit_prior=True, class_prior=None)}
 
-    grid = {'SVM' :{'C' :[0.0001,0.01,1,10],'kernel':['linear']},
+    grid = {'SVM' :{'C' :[0.0001,0.01,1,10],'penalty':['l1', 'l2']},
             'SGD': { 'loss': ['hinge','log','perceptron'], 'penalty': ['l2','l1','elasticnet']},
             'NBMultinomial': {'alpha': [0.0001, 0.01, 1, 2]},
             'NBGaussian' : {},
@@ -37,20 +38,18 @@ def run_models():
 
     labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
     for label in labels:
-        x_train, y_train, x_full = vectorize_X_Y(df, label, stopwords)
+        x_train, y_train, x_full = vectorize_X_Y(df_train, df_full, label, models_dict, stopwords, tfidf=True)
         label_dict = {}
 
         for index,clf in enumerate([clfs[x] for x in models]):
             parameter_values = grid[models[index]]
             for p in ParameterGrid(parameter_values):
-                try:
                 clf.set_params(**p)
 
-                master_dict[label_dict][clf] = cross_validation(clf, x, y)
-
+                label_dict[clf] = cross_validation(clf, x_train, y_train)
+        
         best_clf = None
         best_precision = 0
-
         for classifier in label_dict:
             current_precision = label_dict[classifier]['precision']
             if current_precision > best_precision:
