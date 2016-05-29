@@ -1,8 +1,5 @@
-def get_predictions(clf, X_train, y_train, X_test):
-	clf.fit(X_train,y_train)
-	y_predict = clf.predict(X_test)
-
-	return y_predict
+# Author: Sirui Feng
+# This file performs cross validation on the testing(labeled) dataset.
 
 def cross_validation(clf, X, y):
 	k = 7
@@ -20,14 +17,3 @@ def cross_validation(clf, X, y):
 
 
 	return evaludation_dict
-
-def classify(best_clf, X_train, y_train, X_full):
-	best_clf.fit(X_train, y_train)
-	y_full = get_predictions(best_clf, X_train, Y_train, X_full)
-	return y_full
-
-def output_full_to_dict(df_full):
-
-	df_full_predicted = df_full
-
-	return
