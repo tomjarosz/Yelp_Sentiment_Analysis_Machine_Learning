@@ -41,6 +41,30 @@ models_dict['suggestion for user'] = suggestions_user_kwords
 models_dict['suggestion for business'] = suggestions_busn_kwords
 
 # Preprocessing
+def unlabeled_data(labeled_csv, full_csv):
+	labeled = pd.read_csv(labeled_csv, encoding = 'cp1252')
+	unlabeled = pd.read_csv(full_csv)
+
+	labeled_reviews = set()
+
+	for val in labeled['review_id']:
+		labeled_reviews.add(val)
+
+	for val in labeled_reviews:
+		unlabeled = unlabeled[unlabeled.review_id != val]
+
+	unlabeled.to_csv('data/unlabeled.csv')
+
+	return unlabeled
+
+
+def stemmer(row):
+	review = row['review']
+	stem_review = word_stemmer(review)
+
+	return stem_review
+
+
 def read_data(inputfile_path, encoding_ind = True):
 	if encoding_ind:
 		df = pd.read_csv(inputfile_path, encoding='cp1252')
@@ -53,11 +77,6 @@ def read_data(inputfile_path, encoding_ind = True):
 
 	return df
 
-def stemmer(row):
-	review = row['review']
-	stem_review = word_stemmer(review)
-
-	return stem_review
 
 def get_stopwords():
 	'''
@@ -72,8 +91,8 @@ def get_stopwords():
 
 
 stopwords = get_stopwords()
-df_train = read_data("data/training_scored.csv")
-df_full = read_data("data/training_scored.csv")
+df_labeled = read_data("data/training_scored.csv")
+df_full = read_data("data/unlabeled.csv")
 
 #df_full = read_data("data/manual_train.csv", False)
 
@@ -128,30 +147,39 @@ def create_features(df):
 	return add_features
 
 
-def vectorize_X_Y(df_train, df_full, y_label, models_dict, stopwords, tfidf=True):
+def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=True):
 	'''
 	df: labeled data
 	df_full: full unlabeled data set (currently set to a subset of the full, unlabeled data set)
 	'''
+	df_labeled_train, df_labeled_hide = train_test_split(df_labeled, test_size = 0.2, random_state = 0)
 
 	vocabulary = stem_lexicon(models_dict, y_label)
 	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', vocabulary = vocabulary)
-	X = cv.fit_transform(list(df_train['stem_review'])).toarray()
+	X_train = cv.fit_transform(list(df_labeled_train['stem_review'])).toarray()
+	X_hide = cv.fit_transform(list(df_labeled_hide['stem_review'])).toarray()
 	X_full = cv.fit_transform(list(df_full['stem_review'])).toarray()
 
 	if tfidf:
 		tfidf_transformer = TfidfTransformer()
-		X = tfidf_transformer.fit_transform(X).toarray()
+		X_train = tfidf_transformer.fit_transform(X_train).toarray()
+		X_hide = tfidf_transformer.fit_transform(X_hide).toarray()
 		X_full = tfidf_transformer.fit_transform(X_full).toarray()
 
-	add_features_train = create_features(df_train)
+	add_features_labeled_train = create_features(df_labeled_train)
+	add_features_labeled_hide = create_features(df_labeled_hide)
 	add_features_full = create_features(df_full)
 
-	for feature in add_features_train:
+	for feature in add_features_labeled_train:
 		cv.vocabulary_[feature] = len(cv.vocabulary_) - 1
-		new_feature = np.asarray(add_features_train[feature])
+		new_feature = np.asarray(add_features_labeled_train[feature])
 		new_feature = np.reshape(new_feature, (len(new_feature), 1))
-		X = np.append(X, new_feature, axis = 1)
+		X_train = np.append(X_train, new_feature, axis = 1)
+
+	for feature in add_features_labeled_hide:
+		new_feature = np.asarray(add_features_labeled_hide[feature])
+		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		X_hide = np.append(X_hide, new_feature, axis = 1)
 
 	for feature in add_features_full:
 		new_feature = np.asarray(add_features_full[feature])
@@ -159,18 +187,22 @@ def vectorize_X_Y(df_train, df_full, y_label, models_dict, stopwords, tfidf=True
 		X_full = np.append(X_full, new_feature, axis = 1)
 	
 	# get y_values
-	Y = np.asarray(df_train[y_label])
+	Y_train = np.asarray(df_labeled_train[y_label])
+	Y_hide = np.asarray(df_labeled_hide[y_label])
 
-	return X, Y, X_full
+
+	return X_train, Y_train, X_full, X_hide, Y_hide
 
 
 if __name__ == '__main__':
 	for y_label in models_dict:
 		print("model for:", y_label)
-		X, Y, X_full = vectorize_X_Y(df_train, df_full, y_label, models_dict, stopwords, tfidf=True)
-		print("shape of X: {} \n", "shape of Y: {} \n", "shape of X_full: {} \n",
-			X.shape, Y.shape, X_full.shape)
+		X_train, Y_train, X_full, X_hide, Y_hide = vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=True)
+		print("shape of X_train: {} \n shape of Y_train: {} \n shape of X_full: {} \n shape of X_hide: {} \n shape of Y_hide: {}".format(
+			X_train.shape, Y_train.shape, X_full.shape, X_hide.shape, Y_hide.shape))
 
+	unlabeled_df = unlabeled_data("data/training_scored.csv", "data/training_data.csv")
+	print(len(unlabeled_df))
 
 
 ''' ARCHIVE:: 
