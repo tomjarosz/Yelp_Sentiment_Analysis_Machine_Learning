@@ -131,11 +131,7 @@ def get_X_and_Y(training_df, testing_df, label):
 
 	return X_train, X_test, Y_train, Y_true
 
-def get_predictions(clf, X_train, y_train, X_test):
-	clf.fit(X_train,y_train)
-	y_predict = clf.predict(X_test)
 
-	return y_predict
 
 def NaiveBayesClf(X_train, X_test, y_train, y_test):
 	print(y_train.describe())
@@ -166,59 +162,31 @@ def NaiveBayesClf(X_train, X_test, y_train, y_test):
 
 # 		print(metrics.accuracy_score(Y_true, Y_predict))
 
-def cross_validation(clf, X, y):
-	k = 7
-
-	evaludation_dict = dict()
-
-	scores = cross_validation.cross_val_score(clf, X, y_true, cv=k)
-	print ("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-
-	y_predicted = cross_validation.cross_val_predict(clf, X, y, cv=k)
-
-	evaludation_dict["accuracy"] = metrics.accuracy_score(y_true, y_predicted)
-	evaludation_dict["precision"] = metrics.precision_score(y_true, y_predicted)
-	evaludation_dict["roc_auc"] = metrics.roc_auc_score(y_true, y_predicted)
 
 
-	return evaludation_dict
+# if __name__ == '__main__':
 
-def classify(best_clf, X_train, y_train, X_full):
-	best_clf.fit(X_train, y_train)
-	y_full = get_predictions(best_clf, X_train, Y_train, X_full)
-	return y_full
-
-def output_full_to_dict(df_full):
-
-	df_full_predicted = df_full
-
-	return
-
-
-
-if __name__ == '__main__':
-
-	df = read_data(inputfile_path)
-	print(df.shape)
-	#print(df.describe())
-	#print(df.shape)
-	df_original = df.copy()
-	#training_df, testing_df = split_training_testing(df)
-	start_time = time.time()
-	#NaiveBayesClf(training_df, testing_df)
-	X = df['stem_review']
-	labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
-	for label in labels:
-		y = df[label]
-		k_fold = KFold(df.shape[0], n_folds = 6)
-		for train_index, test_index in k_fold:
-			print("~~~~~~~~~~~~~~~~~")
-			#X_train, X_test, y_train, y_test = X[train_index], X[test_index], y[train_index], y[test_index]
-			vocabulary = models_dict[label]
-			X_train, X_test = vectorize_X(X_train, X_test, vocabulary)
-			NaiveBayesClf(X_train, X_test, y_train, y_test)
-	end_time = time.time()
-	print("Naive Bayes takes", end_time-start_time, "seconds")
+# 	df = read_data(inputfile_path)
+# 	print(df.shape)
+# 	#print(df.describe())
+# 	#print(df.shape)
+# 	df_original = df.copy()
+# 	#training_df, testing_df = split_training_testing(df)
+# 	start_time = time.time()
+# 	#NaiveBayesClf(training_df, testing_df)
+# 	X = df['stem_review']
+# 	labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
+# 	for label in labels:
+# 		y = df[label]
+# 		k_fold = KFold(df.shape[0], n_folds = 6)
+# 		for train_index, test_index in k_fold:
+# 			print("~~~~~~~~~~~~~~~~~")
+# 			#X_train, X_test, y_train, y_test = X[train_index], X[test_index], y[train_index], y[test_index]
+# 			vocabulary = models_dict[label]
+# 			X_train, X_test = vectorize_X(X_train, X_test, vocabulary)
+# 			NaiveBayesClf(X_train, X_test, y_train, y_test)
+# 	end_time = time.time()
+# 	print("Naive Bayes takes", end_time-start_time, "seconds")
 
 # def pca_vectorize(training_data, n_components):
 # 	pca = PCA(n_components = n_components)
