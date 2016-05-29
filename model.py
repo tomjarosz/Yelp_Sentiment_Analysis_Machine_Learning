@@ -41,8 +41,8 @@ models_dict['suggestion for user'] = suggestions_user_kwords
 models_dict['suggestion for business'] = suggestions_busn_kwords
 
 stopwords = get_stopwords()
-
 df = read_data("data/training_scored.csv")
+df_full = read_data("data/trainng_data.csv")
 
 
 def stem_lexicon(models_dict, key):
@@ -54,6 +54,14 @@ def stem_lexicon(models_dict, key):
 	
 	return word_list_stem
 
+def feature_preced_label(df):
+	preceding_label = []
+
+	for i in df['stem_review'].loc[row_indexer]:
+		length.append(len(val))
+
+	return length 
+
 
 def feature_sentence_length(df):
 	length = []
@@ -62,6 +70,10 @@ def feature_sentence_length(df):
 		length.append(len(val))
 
 	return length 
+
+
+#def feature_counts(df_full):
+
 
 # Add features
 add_features = {}
@@ -86,19 +98,6 @@ def vectorize_X_Y(df, y_label, models_dict, stopwords, tfidf=True):
 		new_feature = np.reshape(new_feature, (len(new_feature), 1))
 		X = np.append(X, new_feature, axis = 1)
 
-	'''
-	if polarity_inc: # adding polarity as feature
-		cv.vocabulary_['polarity'] = len(cv.vocabulary_) - 1 # get column names
-		new_feature = np.asarray(df['blob_polarity'])
-		new_feature = np.reshape(new_feature, (len(new_feature), 1))
-		X = np.append(X, new_feature, axis = 1)
-
-	if star_inc: # adding polarity as feature
-		cv.vocabulary_['stars'] = len(cv.vocabulary_) - 1 # get column names
-		new_feature = np.asarray(df['stars'])
-		new_feature = np.reshape(new_feature, (len(new_feature), 1))
-		X = np.append(X, new_feature, axis = 1)
-	'''
 	# get y_values
 	Y = np.asarray(df[y_label])
 
@@ -141,4 +140,17 @@ def naivebayes_model(train, test, y_label, word_list, stopwords, polarity_inc = 
 	y_pred = clf.predict(test_x_vector)
 
 	print(metrics.accuracy_score(test_y_values, y_pred))
+
+	if polarity_inc: # adding polarity as feature
+		cv.vocabulary_['polarity'] = len(cv.vocabulary_) - 1 # get column names
+		new_feature = np.asarray(df['blob_polarity'])
+		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		X = np.append(X, new_feature, axis = 1)
+
+	if star_inc: # adding polarity as feature
+		cv.vocabulary_['stars'] = len(cv.vocabulary_) - 1 # get column names
+		new_feature = np.asarray(df['stars'])
+		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		X = np.append(X, new_feature, axis = 1)
+
 '''
