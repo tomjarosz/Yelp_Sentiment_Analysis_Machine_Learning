@@ -1,5 +1,9 @@
 # Author: Sirui Feng
-# This file vectorizes text.
+# This file preprocesses the data and performs k-fold cross validation.
+
+'''
+
+'''
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -7,11 +11,14 @@ from sklearn.decomposition import PCA
 from sklearn.cross_validation import train_test_split
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
 from sklearn import metrics
+
 from word_stemmer import word_stemmer
 import csv
 import numpy as np
 import pandas as pd
 import time
+from sklearn import cross_validation
+from sklearn.cross_validation import KFold
 
 inputfile_path = 'data/training_scored.csv'
 
@@ -19,20 +26,36 @@ labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for bus
 models_dict = {}
 
 complaint_kwords = list(set(open("data/word_list/complaints.txt").read().splitlines()))
-compliments_kwords = list(set(open("data/word_list/compliments.txt").read().splitlines()))
-suggestions_busn_kwords = list(set(open("data/word_list/suggestion_busn.txt").read().splitlines()))
-suggestions_user_kwords = list(set(open("data/word_list/suggestion_user.txt").read().splitlines()))
+complaint_kwords_stem=set()
+for w in complaint_kwords:
+	complaint_kwords_stem.add(word_stemmer(w))
 
-models_dict['complaint'] = complaint_kwords
-models_dict['compliments'] = complaint_kwords
-models_dict['suggestion for user'] = suggestions_user_kwords
-models_dict['suggestion for business'] = suggestions_user_kwords
-models_dict['neutral'] = list()
+compliments_kwords = list(set(open("data/word_list/compliments.txt").read().splitlines()))
+compliments_kwords_stem=set()
+for w in compliments_kwords:
+	compliments_kwords_stem.add(word_stemmer(w))
+
+suggestions_busn_kwords = list(set(open("data/word_list/suggestion_busn.txt").read().splitlines()))
+suggestions_busn_kwords_stem=set()
+for w in suggestions_busn_kwords:
+	suggestions_busn_kwords_stem.add(word_stemmer(w))
+
+suggestions_user_kwords = list(set(open("data/word_list/suggestion_user.txt").read().splitlines()))
+suggestions_user_kwords_stem=set()
+for w in suggestions_user_kwords:
+	suggestions_user_kwords_stem.add(word_stemmer(w))
+
+models_dict['complaint'] = complaint_kwords_stem
+models_dict['compliments'] = complaint_kwords_stem
+models_dict['suggestion for user'] = suggestions_user_kwords_stem
+models_dict['suggestion for business'] = suggestions_user_kwords_stem
 
 def read_data(inputfile_path):
 	df = pd.read_csv(inputfile_path, encoding='cp1252')
 
 	df['stem_review'] = df.apply(lambda row: stemmer(row), axis=1)
+
+	df.to_csv('data/test.csv')
 
 	return df
 
@@ -57,21 +80,32 @@ def split_training_testing(df):
 	training_df, testing_df = train_test_split(df, test_size = 0.2, random_state = 0)
 	return training_df, testing_df
 
-def vectorize_X(training_df, testing_df, vocabulary, tfidf=True):
-	stopwords = get_stopwords()
-	vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word', vocabulary = vocabulary)
-	#vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word')
+# def vectorize_X(X_train, X_test, vocabulary, tfidf=True):
+# 	stopwords = get_stopwords()
+# 	#vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word', vocabulary = vocabulary)
+# 	vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word')
 		
-	X_train = vectorizer.fit_transform(training_df['stem_review'])
-	X_test = vectorizer.transform(testing_df['stem_review'])
+# 	X_train = vectorizer.fit_transform(X_train)
+# 	X_test = vectorizer.transform(X_test)
+		
+# 	if tfidf:
 
+# 		tfidf_transformer = TfidfTransformer()
+# 		X_train = tfidf_transformer.fit_transform(X_train)
+# 		X_test = tfidf_transformer.transform(X_test)
+
+# 	return X_train, X_test
+
+def vectorize_x(X):
+	stopwords = get_stopwords()
+	#vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word', vocabulary = vocabulary)
+	vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word')
+	X = vectorizer.fit_transform(X)
 	if tfidf:
-
 		tfidf_transformer = TfidfTransformer()
-		X_train = tfidf_transformer.fit_transform(X_train)
-		X_test = tfidf_transformer.transform(X_test)
+		X = tfidf_transformer.fit_transform(X)
+	return X
 
-	return X_train, X_test
 
 def get_X_and_Y(training_df, testing_df, label):
 	
@@ -84,12 +118,12 @@ def get_X_and_Y(training_df, testing_df, label):
 	X_train, X_test = vectorize_X(training_df, testing_df, vocabulary)
 	print("~~~~~~~~~~~~~~~~~~~~~")
 	#print(X_train)
-	print(X_train.shape)
+	#print(X_train.shape)
 
 	Y_train = training_df[label]
 	Y_true = testing_df[label]
 
-	print(np.any(np.isnan(Y_train)))
+	#print(np.any(np.isnan(Y_train)))
 
 	#print(label)
 	#print(Y_train.shape)
@@ -98,46 +132,71 @@ def get_X_and_Y(training_df, testing_df, label):
 
 	return X_train, X_test, Y_train, Y_true
 
-def get_predictions(clf, X_train, Y_train, X_test):
-	clf.fit(X_train,Y_train)
-	Y_predict = clf.predict(X_test)
+def get_predictions(clf, X_train, y_train, X_test):
+	clf.fit(X_train,y_train)
+	y_predict = clf.predict(X_test)
 
-	return Y_predict
+	return y_predict
+
+def NaiveBayesClf(X_train, X_test, y_train, y_test):
+	print(y_train.describe())
+	clf = MultinomialNB()
+	clf.fit(X_train, y_train)
+	y_predict = get_predictions(clf, X_train, y_train, X_test)
+	print('Baseline:', 1-y_test.mean())
+	print()
+	print(metrics.accuracy_score(y_test, y_predict))
+
+
+# def NaiveBayesClf(training_df, testing_df):
+# 	labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
+
+# 	#labels = ['complaint', 'suggestion for user', 'compliments', 'neutral', 'suggestion for business']
+# 	for label in labels:
+
+# 		X_train, X_test, Y_train, Y_true = get_X_and_Y(training_df, testing_df, label)
 
 
 
-def NaiveBayesClf(training_df, testing_df):
+# 		clf = MultinomialNB()
+# 		clf.fit(X_train,Y_train)
+# 		Y_predict = get_predictions(clf, X_train, Y_train, X_test)
+# 		print("Baseline:", 1-Y_true.mean())
+# 		print()
+
+
+# 		print(metrics.accuracy_score(Y_true, Y_predict))
+
+def cross_validation(df):
+	X = df['stem_review']
 	labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
-
-	#labels = ['complaint', 'suggestion for user', 'compliments', 'neutral', 'suggestion for business']
 	for label in labels:
-
-		X_train, X_test, Y_train, Y_true = get_X_and_Y(training_df, testing_df, label)
-
-		clf = MultinomialNB()
-		clf.fit(X_train,Y_train)
-		Y_predict = get_predictions(clf, X_train, Y_train, X_test)
-		print("Baseline:", 1-Y_true.mean())
-		print()
-
-
-		print(metrics.accuracy_score(Y_true, Y_predict))
-
-
+		y = df[label]
+		k_fold = KFold(df.shape[0], n_folds = 6)
 
 if __name__ == '__main__':
 
 	df = read_data(inputfile_path)
+	print(df.shape)
 	#print(df.describe())
 	#print(df.shape)
 	df_original = df.copy()
-	training_df, testing_df = split_training_testing(df)
+	#training_df, testing_df = split_training_testing(df)
 	start_time = time.time()
-	NaiveBayesClf(training_df, testing_df)
+	#NaiveBayesClf(training_df, testing_df)
+	X = df['stem_review']
+	labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
+	for label in labels:
+		y = df[label]
+		k_fold = KFold(df.shape[0], n_folds = 6)
+		for train_index, test_index in k_fold:
+			print("~~~~~~~~~~~~~~~~~")
+			#X_train, X_test, y_train, y_test = X[train_index], X[test_index], y[train_index], y[test_index]
+			vocabulary = models_dict[label]
+			X_train, X_test = vectorize_X(X_train, X_test, vocabulary)
+			NaiveBayesClf(X_train, X_test, y_train, y_test)
 	end_time = time.time()
 	print("Naive Bayes takes", end_time-start_time, "seconds")
-
-
 
 # def pca_vectorize(training_data, n_components):
 # 	pca = PCA(n_components = n_components)
