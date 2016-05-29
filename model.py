@@ -44,6 +44,7 @@ stopwords = get_stopwords()
 
 df = read_data("data/training_scored.csv")
 
+
 def stem_lexicon(models_dict, key):
 	word_list_stem = []
 	for val in models_dict[key]:
@@ -54,23 +55,50 @@ def stem_lexicon(models_dict, key):
 	return word_list_stem
 
 
-def vectorize_X_Y(df, y_label, models_dict, stopwords, tfidf=True, polarity_inc=True):
+def feature_sentence_length(df):
+	length = []
+
+	for val in df['stem_review']:
+		length.append(len(val))
+
+	return length 
+
+# Add features
+add_features = {}
+add_features['polarity'] = df['blob_polarity']
+add_features['stars'] = df['stars']
+add_features['length'] = feature_sentence_length(df)
+
+
+def vectorize_X_Y(df, y_label, models_dict, stopwords, tfidf=True):
 
 	vocabulary = stem_lexicon(models_dict, y_label)
-	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), analyzer='word', vocabulary = vocabulary)
+	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', vocabulary = vocabulary)
 	X = cv.fit_transform(list(df['stem_review'])).toarray()
 
 	if tfidf:
 		tfidf_transformer = TfidfTransformer()
 		X = tfidf_transformer.fit_transform(X).toarray()
 
+	for feature in add_features:
+		cv.vocabulary_[feature] = len(cv.vocabulary_) - 1
+		new_feature = np.asarray(add_features[feature])
+		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		X = np.append(X, new_feature, axis = 1)
+
+	'''
 	if polarity_inc: # adding polarity as feature
 		cv.vocabulary_['polarity'] = len(cv.vocabulary_) - 1 # get column names
-		polarity = np.asarray(df['blob_polarity'])
-		print("length:", len(polarity))
-		polarity = np.reshape(polarity, (len(polarity), 1))
-		X = np.append(X, polarity, axis = 1)
-	
+		new_feature = np.asarray(df['blob_polarity'])
+		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		X = np.append(X, new_feature, axis = 1)
+
+	if star_inc: # adding polarity as feature
+		cv.vocabulary_['stars'] = len(cv.vocabulary_) - 1 # get column names
+		new_feature = np.asarray(df['stars'])
+		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		X = np.append(X, new_feature, axis = 1)
+	'''
 	# get y_values
 	Y = np.asarray(df[y_label])
 
@@ -80,7 +108,7 @@ def vectorize_X_Y(df, y_label, models_dict, stopwords, tfidf=True, polarity_inc=
 if __name__ == '__main__':
 	for y_label in models_dict:
 		print("model for:", y_label)
-		X, Y = vectorize_X_Y(df, y_label, models_dict, stopwords, tfidf=True, polarity_inc=True)
+		X, Y = vectorize_X_Y(df, y_label, models_dict, stopwords, tfidf=True)
 
 
 ''' ARCHIVE:: 
