@@ -138,7 +138,8 @@ def feature_counts(df, category):
 
 def create_features(df):
 	add_features = {}
-	add_features['polarity'] = df['blob_polarity']
+	add_features['polarity'] = df['blob_polarity'] + 1 # transforming polarity 
+	# values to accommodate models that cannot take negative x-values
 	add_features['stars'] = df['stars']
 	add_features['length'] = feature_sentence_length(df)
 	add_features['ct_per_busn'] = feature_counts(df, 'business_id')
