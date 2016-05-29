@@ -73,7 +73,9 @@ def get_stopwords():
 
 stopwords = get_stopwords()
 df_train = read_data("data/training_scored.csv")
-df_full = read_data("data/training_data.csv", False)
+df_full = read_data("data/training_scored.csv")
+
+#df_full = read_data("data/manual_train.csv", False)
 
 # Feature Creation
 def stem_lexicon(models_dict, key):
@@ -157,7 +159,7 @@ def vectorize_X_Y(df_train, df_full, y_label, models_dict, stopwords, tfidf=True
 		X_full = np.append(X_full, new_feature, axis = 1)
 	
 	# get y_values
-	Y = np.asarray(df[y_label])
+	Y = np.asarray(df_train[y_label])
 
 	return X, Y, X_full
 
@@ -165,7 +167,7 @@ def vectorize_X_Y(df_train, df_full, y_label, models_dict, stopwords, tfidf=True
 if __name__ == '__main__':
 	for y_label in models_dict:
 		print("model for:", y_label)
-		X, Y, X_full = vectorize_X_Y(df, df_full, y_label, models_dict, stopwords, tfidf=True)
+		X, Y, X_full = vectorize_X_Y(df_train, df_full, y_label, models_dict, stopwords, tfidf=True)
 		print("shape of X: {} \n", "shape of Y: {} \n", "shape of X_full: {} \n",
 			X.shape, Y.shape, X_full.shape)
 
