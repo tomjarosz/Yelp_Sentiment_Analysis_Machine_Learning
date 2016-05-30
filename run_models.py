@@ -50,6 +50,8 @@ def run_models():
 
                 label_dict[clf] = cross_validation(clf, x_train, y_train)
 
+        print(label_dict)
+                
         best_clf = None
         best_precision = 0
         for classifier in label_dict:

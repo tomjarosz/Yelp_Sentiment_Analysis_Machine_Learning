@@ -60,7 +60,7 @@ def unlabeled_data(labeled_csv, full_csv):
 
 def stemmer(row):
 	review = row['review']
-	stem_review = word_stemmer(review)
+	stem_review = word_stemmer(str(review))
 
 	return stem_review
 
@@ -92,7 +92,7 @@ def get_stopwords():
 
 stopwords = get_stopwords()
 df_labeled = read_data("data/training_scored.csv")
-df_full = read_data("data/unlabeled.csv")
+df_full = read_data("data/training_scored.csv")
 
 #df_full = read_data("data/manual_train.csv", False)
 
@@ -202,8 +202,8 @@ if __name__ == '__main__':
 		print("shape of X_train: {} \n shape of Y_train: {} \n shape of X_full: {} \n shape of X_hide: {} \n shape of Y_hide: {}".format(
 			X_train.shape, Y_train.shape, X_full.shape, X_hide.shape, Y_hide.shape))
 
-	unlabeled_df = unlabeled_data("data/training_scored.csv", "data/training_data.csv")
-	print(len(unlabeled_df))
+	# unlabeled_df = unlabeled_data("data/training_scored.csv", "data/training_data.csv")
+	# print(len(unlabeled_df))
 
 
 ''' ARCHIVE:: 
