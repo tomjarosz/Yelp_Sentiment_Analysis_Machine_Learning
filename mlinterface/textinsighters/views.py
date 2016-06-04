@@ -17,11 +17,11 @@ def suggestion(request):
             print(data['business_name'])
             #context = insert_function_here(data)
             form = BusinessName()
-            context = {'form':form}
-            return render( request,'mainpage.html', context)
+            context = buildcontext(data['business_name'])
+            return render( request,'textinsighters/mainpage.html', context)
     else:
         form = BusinessName()  
         context = {'form':form}
         print('first time')
         print(form)
-        return render( request,'mainpage.html', context)
+        return render( request,'textinsighters/mainpage.html', context)
