@@ -220,13 +220,14 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 
 
 if __name__ == '__main__':
-	#for y_label in models_dict:
-	#	print("model for:", y_label)
-	#	X_train, Y_train, X_full, X_hide, Y_hide = vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=True)
-	#	print("shape of X_train: {} \n shape of Y_train: {} \n shape of X_full: {} \n shape of X_hide: {} \n shape of Y_hide: {}".format(
-	#		X_train.shape, Y_train.shape, X_full.shape, X_hide.shape, Y_hide.shape))
+	for y_label in models_dict:
+		print("model for:", y_label)
+		X_train, Y_train, X_full, X_hide, Y_hide = vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=True)
+		print("shape of X_train: {} \n shape of Y_train: {} \n shape of X_full: {} \n shape of X_hide: {} \n shape of Y_hide: {}".format(
+			X_train.shape, Y_train.shape, X_full.shape, X_hide.shape, Y_hide.shape))
 
-	unlabeled_data("data/training_scored.csv", "data/full_data.csv")
+
+	#unlabeled_data("data/training_scored.csv", "data/full_data.csv")
 	#print(len(unlabeled_df))
 
 
