@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+        }
+        h4 {
+           text-align: center; 
+        }
+        p {
+            color:black;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+        form {
+            width: 700px ;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input {
+            border: none;
+            border-bottom: 2px solid blue;
+            background-color: white; 
+        }
+    </style>
+  
+  <title>Textinsighters</title> 
+</head>
+<body>
+<h1>Textinsighters</h1>
+<h4>Please choose your Business below to see the Complaints, Suggestions and Compliments given by YELP users for your business</h4>
+<form id="user_input_form" method="post" action="http://127.0.0.1:8000/textinsighters/suggestion">
+   
+    {% csrf_token %}
+    {{ form }}
+      <datalist id="browsers">
+        <option value="Internet Explorer">
+        <option value="Firefox">
+        <option value="Chrome">
+        <option value="Opera">
+        <option value="Safari">
+        <option value="emma">    
+      </datalist>
+      <button onclick="myFunction()">Submittt</button>
+</form>
+<script>
+    function myFunction() {
+    //document.getElementById("id_business_name").value = document.getElementById("user_input").value;
+    document.getElementById("user_input_form").submit();
+    }
+</script>
+
+</body>
+</html>
