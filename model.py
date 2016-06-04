@@ -158,6 +158,8 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 	df_labeled_train, df_labeled_hide = train_test_split(df_labeled, test_size = 0.2, random_state = 0)
 
 	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word')
+	#cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', min_df = .1)
+
 	X_train = cv.fit_transform(list(df_labeled_train['stem_review'])).toarray()
 	X_hide = cv.fit_transform(list(df_labeled_hide['stem_review'])).toarray()
 	X_full = cv.fit_transform(list(df_full['stem_review'])).toarray()
@@ -180,9 +182,12 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 		cv.vocabulary_[feature] = cv_lex.vocabulary_[feature]
 
 	# adding 
-	X_train = np.append(X_train, X_train_lex)
-	X_hide = np.append(X_hide, X_hide_lex)
-	X_full = np.append(X_full, X_full_lex)
+	#print("X_train shape: {}, X_hide shape: {}, X_full shape: {}".format(X_train.shape, X_hide.shape, X_full.shape))
+	#print("X_train_lex shape: {}, X_hide_lex shape: {}, X_full_lex shape: {}".format(X_train_lex.shape, X_hide_lex.shape, X_full_lex.shape))
+
+	X_train = np.append(X_train, X_train_lex, axis = 1)
+	X_hide = np.append(X_hide, X_hide_lex, axis = 1)
+	X_full = np.append(X_full, X_full_lex, axis = 1)
 
 
 	if tfidf:
@@ -199,6 +204,7 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 		cv.vocabulary_[feature] = len(cv.vocabulary_) - 1
 		new_feature = np.asarray(add_features_labeled_train[feature])
 		new_feature = np.reshape(new_feature, (len(new_feature), 1))
+		#print("X_train shape: {} new_feature shape: {}".format(X_train.shape, new_feature.shape))
 		X_train = np.append(X_train, new_feature, axis = 1)
 
 	for feature in add_features_labeled_hide:
