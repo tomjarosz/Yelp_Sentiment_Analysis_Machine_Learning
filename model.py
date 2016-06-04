@@ -157,8 +157,9 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 	'''
 	df_labeled_train, df_labeled_hide = train_test_split(df_labeled, test_size = 0.2, random_state = 0)
 
-	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word')
-	#cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', min_df = .1)
+	vocabulary = stem_lexicon(models_dict, y_label)
+	# cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word')
+	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', vocabulary=vocabulary)
 
 	X_train = cv.fit_transform(list(df_labeled_train['stem_review'])).toarray()
 	X_hide = cv.fit_transform(list(df_labeled_hide['stem_review'])).toarray()
@@ -167,27 +168,26 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 	#print("shape before adding lexicons: {}".format(X_train.shape))
 
 	# adding keyword lexicon as features
-	vocabulary = stem_lexicon(models_dict, y_label)
 	#print("length of vocab list: {}".format(len(vocabulary)))
-	cv_lex = CountVectorizer(vocabulary=vocabulary)
-	X_train_lex = cv_lex.fit_transform(list(df_labeled_train['stem_review'])).toarray()
-	X_hide_lex = cv_lex.fit_transform(list(df_labeled_hide['stem_review'])).toarray()
-	X_full_lex = cv_lex.fit_transform(list(df_full['stem_review'])).toarray()
+	#cv_lex = CountVectorizer(vocabulary=vocabulary)
+	#X_train_lex = cv_lex.fit_transform(list(df_labeled_train['stem_review'])).toarray()
+	#X_hide_lex = cv_lex.fit_transform(list(df_labeled_hide['stem_review'])).toarray()
+	#X_full_lex = cv_lex.fit_transform(list(df_full['stem_review'])).toarray()
 	#print("first 5 entries of lexicon matrix: {}".format(X_train_lex[:5]))
 	#print("shape of X_Train lexicon matrix: {}".format(X_train_lex.shape))
 
 
 	# updating indices of sparse matrix to include lexicon features
-	for feature in cv_lex.vocabulary_:
-		cv.vocabulary_[feature] = cv_lex.vocabulary_[feature]
+	#for feature in cv_lex.vocabulary_:
+	#	cv.vocabulary_[feature] = cv_lex.vocabulary_[feature]
 
 	# adding 
-	#print("X_train shape: {}, X_hide shape: {}, X_full shape: {}".format(X_train.shape, X_hide.shape, X_full.shape))
+	print("X_train shape: {}, X_hide shape: {}, X_full shape: {}".format(X_train.shape, X_hide.shape, X_full.shape))
 	#print("X_train_lex shape: {}, X_hide_lex shape: {}, X_full_lex shape: {}".format(X_train_lex.shape, X_hide_lex.shape, X_full_lex.shape))
 
-	X_train = np.append(X_train, X_train_lex, axis = 1)
-	X_hide = np.append(X_hide, X_hide_lex, axis = 1)
-	X_full = np.append(X_full, X_full_lex, axis = 1)
+	#X_train = np.append(X_train, X_train_lex, axis = 1)
+	#X_hide = np.append(X_hide, X_hide_lex, axis = 1)
+	#X_full = np.append(X_full, X_full_lex, axis = 1)
 
 
 	if tfidf:
