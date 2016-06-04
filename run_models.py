@@ -49,8 +49,6 @@ def run_models():
                 clf.set_params(**p)
 
                 label_dict[clf] = cross_validation(clf, x_train, y_train)
-
-        print(label_dict)
                 
         best_clf = None
         best_precision = 0
@@ -61,11 +59,9 @@ def run_models():
                 best_precision = current_precision
        
         y_full_predict = classify(best_clf, x_train, y_train, x_full)
-        y_full_predict = np.reshape(y_full_predict, (len(y_full_predict), 1))
-        x_full = np.append(x_full, y_full_predict, axis = 1)
-        # np.savetxt('x_full' + str(label) + '.csv', x_full, delimiter = ",")
-        # print("x_full shape:", x_full.shape)
+        df_full[label] = y_full_predict
 
+    df_full.to_csv('result.csv')
   
 if __name__ == '__main__':
     run_models()
