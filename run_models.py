@@ -22,6 +22,8 @@ from classify import classify
 
 def run_models():
 
+
+
     models = ['SVM', 'SGD', 'NBMultinomial', 'NBGaussian', 'NBBernoulli']
 
     clfs = {'SVM': svm.LinearSVC(random_state=0, dual=False),
@@ -38,34 +40,38 @@ def run_models():
 
 
     labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
-    for label in labels:
-        x_train, y_train, x_full, x_hide, y_hide = vectorize_X_Y(df_labeled, df_full, label, models_dict, stopwords, tfidf=True)
 
-        label_dict = {}
+    with open('performance_report.csv', 'w') as outfile:
+        w = csv.writer(outfile, delimiter=',')
+        w.writerow(['Label', 'Classifier','Accuracy_Baseline', 'Accuracy', 'Precision', 'AUC'])
+        for label in labels:
+            x_train, y_train, x_full, x_hide, y_hide = vectorize_X_Y(df_labeled, df_full, label, models_dict, stopwords, tfidf=True)
 
-        for index,clf in enumerate([clfs[x] for x in models]):
-            parameter_values = grid[models[index]]
-            for p in ParameterGrid(parameter_values):
-                clf.set_params(**p)
+            label_dict = {}
 
-                label_dict[clf] = cross_validation(clf, x_train, y_train)
+            for index,clf in enumerate([clfs[x] for x in models]):
+                parameter_values = grid[models[index]]
+                for p in ParameterGrid(parameter_values):
+                    clf.set_params(**p)
 
-        print(label_dict)
+                    label_dict[clf] = cross_validation(clf, x_train, y_train)
+                    
+            best_clf = None
+            best_precision = 0
+            for classifier in label_dict:
+                w.writerow([label, label_dict[classifier], label_dict[classifier]["accuracy_baseline"], \
+                    label_dict[classifier]['accuracy'], label_dict[classifier]['precision'], \
+                    label_dict[classifier]['roc_auc']])
                 
-        best_clf = None
-        best_precision = 0
-        for classifier in label_dict:
-            current_precision = label_dict[classifier]['precision']
-            if current_precision > best_precision:
-                best_clf = classifier
-                best_precision = current_precision
+                current_precision = label_dict[classifier]['precision']
+                if current_precision > best_precision:
+                    best_clf = classifier
+                    best_precision = current_precision
        
         y_full_predict = classify(best_clf, x_train, y_train, x_full)
-        y_full_predict = np.reshape(y_full_predict, (len(y_full_predict), 1))
-        x_full = np.append(x_full, y_full_predict, axis = 1)
-        # np.savetxt('x_full' + str(label) + '.csv', x_full, delimiter = ",")
-        # print("x_full shape:", x_full.shape)
+        df_full[label] = y_full_predict
 
+    df_full.to_csv('result.csv')
   
 if __name__ == '__main__':
     run_models()
