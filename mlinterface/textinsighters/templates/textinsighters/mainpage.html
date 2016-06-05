@@ -27,7 +27,7 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Business Casual</a>
+                <a class="navbar-brand" href="suggestion">TextInsighters</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -80,15 +80,15 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                         -->
                     </div>
                     <h2 class="brand-before">
-                        <small>Welcome to</small>
+                       <strong>Uncover insights from
+                        your Yelp reviews</strong>
                     </h2>
-                    <h1 class="brand-name">TextInsighters</h1>
                     <hr class="tagline-divider">
                     <h2>
                         <small>By
                             <strong> <a href="https://www.linkedin.com/in/siruifeng" target="_blank">Sirui Feng</a>, 
                                     <a href="https://pk.linkedin.com/in/turab-hassan-2b477b7b" target="_blank">Turab Hassan</a>,
-                                    <a href="https://www.linkedin.com/in/vinguyen613" target="_blank">Vi Nguyen</a>, and 
+                                    <a href="https://www.linkedin.com/in/vinguyen613" target="_blank">Vi Nguyen</a>, &
                                     <a href="https://www.linkedin.com/in/tom-jarosz-4096a760" target="_blank">Tom Jarosz</a> </strong>
                         </small>
                     </h2>
@@ -99,8 +99,11 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center"><strong>Choose your institution below to see the top complaints, suggestions, and compliments derived from reviews on Yelp </strong> 
-                    <br> </br>
+                    <hr class="visible-xs">
+                    <h2 class="intro-text text-center">
+                    <p>
+                    <strong><center>Choose your institution below to see the top complaints, suggestions, and compliments derived from reviews on Yelp </center></strong> 
+                    </p>
                     <form id="user_input_form" method="post" action="http://127.0.0.1:8000/textinsighters/suggestion">
                         {% csrf_token %}
                         {{ form }}
@@ -305,17 +308,12 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center"><strong>Uncover insights from the noise of 
-                        your Yelp reviews</strong>
-                    </h2>
-                    <hr>
-                    <hr class="visible-xs">
-                    <p>A huge thanks to <a href="http://www.rayidghani.com/" target="_blank">Rayid Ghani</a> for inspiring and guiding us on this project.</p>
+                    <p> <center> A huge thanks to <a href="http://www.rayidghani.com/" target="_blank">Rayid Ghani</a> and 
+                    <a href="https://twitter.com/gustavla" target="_blank">Gustav Larsson</a> for enabling and guiding us on this project. </center></p>
                 </div>
             </div>
         </div>
