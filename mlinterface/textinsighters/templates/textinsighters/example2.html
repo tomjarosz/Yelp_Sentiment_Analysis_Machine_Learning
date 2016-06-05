@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<style>
+table, td {
+    border: 1px solid black;
+}
+</style>
+<body onload="myFunction()">
+
+<h1>This is heading 1</h1>
+
+</table>
+<div id="div1">
+<p id="p1">Complaints</p>
+</div>
+<div id="div2">
+<p id="p1">Compliments</p>
+</div>
+<div id="div3">
+<p id="p1">Suggestions for business</p>
+</div>
+<div id="div4">
+<p id="p1">Suggestion for user</p>
+</div>
+<script>
+
+function myFunction() {
+
+    {% for line in complaint %}
+    var para = document.createElement("p");
+    var node = document.createTextNode( ' {{line}} ' );
+    para.appendChild(node);
+    var element = document.getElementById("div1");
+    element.appendChild(para);
+    {% endfor %}
+
+    {% for line in compliments %}
+    var para = document.createElement("p");
+    var node = document.createTextNode( ' {{line}} ' );
+    para.appendChild(node);
+    var element = document.getElementById("div2");
+    element.appendChild(para);
+    {% endfor %}
+
+    {% for line in buss_sugg %}
+    var para = document.createElement("p");
+    var node = document.createTextNode( ' {{line}} ' );
+    para.appendChild(node);
+    var element = document.getElementById("div3");
+    element.appendChild(para);
+    {% endfor %}
+
+    {% for line in user_sugg %}
+    var para = document.createElement("p");
+    var node = document.createTextNode( ' {{line}} ' );
+    para.appendChild(node);
+    var element = document.getElementById("div4");
+    element.appendChild(para);
+    {% endfor %}
+    
+    }
+</script>
+</body>
+</html>
