@@ -158,7 +158,7 @@ def vectorize_X_Y(df_labeled, df_full, y_label, models_dict, stopwords, tfidf=Tr
 	df_labeled_train, df_labeled_hide = train_test_split(df_labeled, test_size = 0.2, random_state = 0)
 
 	vocabulary = stem_lexicon(models_dict, y_label)
-	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', min_df = .005)
+	cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word')
 	# cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', vocabulary=vocabulary)
 
 	X_train = cv.fit_transform(list(df_labeled_train['stem_review'])).toarray()
