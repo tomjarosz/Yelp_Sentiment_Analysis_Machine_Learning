@@ -52,6 +52,8 @@ def run_models():
             label_dict = {}
 
             for index,clf in enumerate([clfs[x] for x in models]):
+                current_model = models[index]
+                current_params = grid[current_model]
                 parameter_values = grid[models[index]]
                 for p in ParameterGrid(parameter_values):
                     clf.set_params(**p)
@@ -59,6 +61,7 @@ def run_models():
                     print(clf)
 
                     label_dict[clf] = cross_validation(clf, x_train, y_train)
+                    print(label_dict)
                     
             best_clf = None
             best_precision = 0
