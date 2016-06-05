@@ -1,6 +1,6 @@
-#import urllib.parse
-#from . import make_dict
-import make_dict
+import urllib.parse
+from . import make_dict
+# import make_dict
 from sklearn.feature_extraction.text import CountVectorizer
 import json
 from nltk.tag import pos_tag
@@ -10,8 +10,8 @@ from nltk.tokenize import word_tokenize
 
 
 matching_dict = {}
-# data = make_dict.populate_dict('textinsighters/result.csv') 
-data = make_dict.populate_dict('../../result.csv')
+data = make_dict.populate_dict('textinsighters/result.csv') 
+# data = make_dict.populate_dict('../../result.csv')
 # print(data)
 
 def get_stopwords():
@@ -19,7 +19,9 @@ def get_stopwords():
     Provides a list of stop words.
     There are 387 stopwords in total.
     '''
-    with open('../../data/word_list/stoplists.csv', 'r') as f:
+    # with open('../../data/word_list/stoplists.csv', 'r') as f:
+    with open('textinsighters/stoplists.csv', 'r') as f:
+
         stopwords = list()
         for line in f:
             stopwords.append(line.strip())
@@ -27,12 +29,10 @@ def get_stopwords():
     stopwords = stopwords + ['you', 'I', 'they', 'we', 'our', 'my']
     return stopwords
 
-stopwords = get_stopwords()
-
 
 def make_matching_dict ():
-    # with open('textinsighters/yelp_academic_dataset_business.json') as data_file:   
-    with open('../../yelp_academic_dataset_business.json') as data_file:    
+    with open('textinsighters/yelp_academic_dataset_business.json') as data_file:   
+    # with open('../../yelp_academic_dataset_business.json') as data_file:    
  
         for line in data_file:
             row = json.loads(line)
@@ -50,6 +50,8 @@ def context_from_bussname(business_name):
     all_lines = data[busn_id]
     print(all_lines) 
     results_dict = {}
+
+    stopwords = stopwords()
 
     results_dict['complaints'] = all_lines['complaint']
     results_dict['compliments'] = all_lines['compliments']
@@ -70,12 +72,11 @@ def context_from_bussname(business_name):
                 if tag[0][1] == 'NN': # only tracking nouns
                     rv.append(key)
             results_dict[key] = rv
-
-
-    return results['complaints'], results['compliments'], results['user_sugg'], results['busn_sugg']
+    print("results:", results_dict)
+    return results_dict['complaints'], results_dict['compliments'], results_dict['user_sugg'], results_dict['busn_sugg']
 
 make_matching_dict()
-
+'''
 for key in data:
     test = data[key]
     sentences = test['compliments']
@@ -95,3 +96,4 @@ for key in data:
         # print(rv)
         # print(sentences, "\n")
 # context_from_bussname('Animal Elegance')
+'''
