@@ -4,6 +4,7 @@ import urllib.request
 import json
 import numpy as np
 import csv
+import time
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
@@ -43,8 +44,9 @@ def run_models():
 
     with open('performance_report.csv', 'w') as outfile:
         w = csv.writer(outfile, delimiter=',')
-        w.writerow(['Label', 'Classifier','Accuracy_Baseline', 'Accuracy', 'Precision', 'AUC'])
+        w.writerow(['Label', 'Classifier','Accuracy_Baseline', 'Accuracy', 'Precision', 'AUC', "Runtime"])
         for label in labels:
+            print(label)
             x_train, y_train, x_full, x_hide, y_hide = vectorize_X_Y(df_labeled, df_full, label, models_dict, stopwords, tfidf=True)
 
             label_dict = {}
@@ -53,23 +55,25 @@ def run_models():
                 parameter_values = grid[models[index]]
                 for p in ParameterGrid(parameter_values):
                     clf.set_params(**p)
+                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    print(clf)
 
                     label_dict[clf] = cross_validation(clf, x_train, y_train)
                     
             best_clf = None
             best_precision = 0
             for classifier in label_dict:
-                w.writerow([label, label_dict[classifier], label_dict[classifier]["accuracy_baseline"], \
+                w.writerow([label, classifier, label_dict[classifier]["accuracy_baseline"], \
                     label_dict[classifier]['accuracy'], label_dict[classifier]['precision'], \
-                    label_dict[classifier]['roc_auc']])
-                
+                    label_dict[classifier]['roc_auc'], label_dict[classifier]['runtime']])
+
                 current_precision = label_dict[classifier]['precision']
                 if current_precision > best_precision:
                     best_clf = classifier
                     best_precision = current_precision
        
-        y_full_predict = classify(best_clf, x_train, y_train, x_full)
-        df_full[label] = y_full_predict
+            y_full_predict = classify(best_clf, x_train, y_train, x_full)
+            df_full[label] = y_full_predict
 
     df_full.to_csv('result.csv')
   

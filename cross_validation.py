@@ -17,10 +17,13 @@ from sklearn.cross_validation import cross_val_predict
 def cross_validation(clf, X, y_true):
     k = 7
     evaluation_dict = dict()
+    start_time = time.time()
     y_predicted = cross_val_predict(clf, X, y_true, cv=k)
+    end_time = time.time()
 
     evaluation_dict["accuracy_baseline"] = 1 - y_true.mean()
     evaluation_dict["accuracy"] = metrics.accuracy_score(y_true, y_predicted)
     evaluation_dict["precision"] = metrics.precision_score(y_true, y_predicted)
     evaluation_dict["roc_auc"] = metrics.roc_auc_score(y_true, y_predicted)
+    evaluation_dict["runtime"] = end_time - start_time
     return evaluation_dict
