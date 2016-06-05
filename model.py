@@ -95,7 +95,7 @@ def get_stopwords():
 
 stopwords = get_stopwords()
 df_labeled = read_data("data/training_scored.csv")
-df_full = read_data("data/unlabeledA.csv")
+df_full = read_data("data/unlabeled_full.csv")
 
 #df_full = read_data("data/unlabeled.csv")
 #df_full = read_data("data/manual_train.csv", False)
