@@ -60,7 +60,7 @@ def run_models():
                     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                     print(clf)
 
-                    label_dict[clf] = cross_validation(clf, x_train, y_train)
+                    label_dict[clf[p]] = cross_validation(clf, x_train, y_train)
                     print(label_dict)
                     
             best_clf = None
