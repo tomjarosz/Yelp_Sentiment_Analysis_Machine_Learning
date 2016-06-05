@@ -23,31 +23,23 @@ def populate_dict(filename):
                 suggestion_for_business = row[11]
 
                 if business_id not in reviews_dict:
-                    reviews_dict[business_id]=dict()
+                    reviews_dict[business_id] = dict()
+                    reviews_dict[business_id]['complaint'] = list()
+                    reviews_dict[business_id]['compliments'] = list() 
+                    reviews_dict[business_id]['suggestion_for_user'] = list()  
+                    reviews_dict[business_id]['suggestion_for_business'] = list()             
 
                 if complaint != 0:
-                    if 'complaint' in reviews_dict[business_id]:
-                        reviews_dict[business_id]['complaint'].append(review)
-                    else:
-                        reviews_dict[business_id]['complaint'] = list()
+                    reviews_dict[business_id]['complaint'].append(review)
 
                 if compliments != 0:
-                    if 'compliments' in reviews_dict[business_id]:
-                        reviews_dict[business_id]['compliments'].append(review)
-                    else:
-                        reviews_dict[business_id]['compliments'] = list() 
+                    reviews_dict[business_id]['compliments'].append(review)
                 
                 if suggestion_for_user != 0:
-                    if 'suggestion_for_user' in reviews_dict[business_id]:
-                        reviews_dict[business_id]['suggestion_for_user'].append(review)
-                    else:
-                        reviews_dict[business_id]['suggestion_for_user'] = list()  
+                    reviews_dict[business_id]['suggestion_for_user'].append(review)
 
                 if suggestion_for_business != 0:
-                    if 'suggestion_for_business' in reviews_dict[business_id]:
-                        reviews_dict[business_id]['suggestion_for_business'].append(review)
-                    else:
-                        reviews_dict[business_id]['suggestion_for_business'] = list()             
+                    reviews_dict[business_id]['suggestion_for_business'].append(review)
 
     return reviews_dict
 
