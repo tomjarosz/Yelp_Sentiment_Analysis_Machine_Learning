@@ -46,36 +46,70 @@ def run_models():
         w = csv.writer(outfile, delimiter=',')
         w.writerow(['Label', 'Classifier','Accuracy_Baseline', 'Accuracy', 'Precision', 'AUC', "Runtime"])
         for label in labels:
+
+            best_model = None
+            best_params = None
+            best_score = -1
+
             print(label)
             x_train, y_train, x_full, x_hide, y_hide = vectorize_X_Y(df_labeled, df_full, label, models_dict, stopwords, tfidf=True)
 
-            label_dict = {}
+            #label_dict = {}
+            
 
             for index,clf in enumerate([clfs[x] for x in models]):
+                
+                # best_precision = -1
+                # best_perform = None
+                # best_param = None
                 current_model = models[index]
-                current_params = grid[current_model]
-                parameter_values = grid[models[index]]
+
+                parameter_values= grid[models[index]]
+                #temp = dict()
+
                 for p in ParameterGrid(parameter_values):
+
+                    #current_params = p
                     clf.set_params(**p)
                     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    #current_clf = clf
                     print(clf)
+                    #print(current_params)
 
-                    label_dict[clf[p]] = cross_validation(clf, x_train, y_train)
-                    print(label_dict)
+                    temp = cross_validation(clf, x_train, y_train)
+                    print(temp)
+
+                    w.writerow([label, clf, temp["accuracy_baseline"], \
+                    temp['accuracy'], temp['roc_auc'], \
+                    temp['roc_auc'], temp['runtime']])
                     
-            best_clf = None
-            best_precision = 0
-            for classifier in label_dict:
-                w.writerow([label, classifier, label_dict[classifier]["accuracy_baseline"], \
-                    label_dict[classifier]['accuracy'], label_dict[classifier]['precision'], \
-                    label_dict[classifier]['roc_auc'], label_dict[classifier]['runtime']])
+                    if temp['roc_auc'] > best_score:
+                        #best = clf
+                        best_score = temp['roc_auc']
+                        #best_perform = temp
+                        #best_params = p
+                        best_model = clf
+                        print("+++++Best model has been changed to:", best_model)
+                        print("+++++Best param has been changed to:", best_params)
 
-                current_precision = label_dict[classifier]['precision']
-                if current_precision > best_precision:
-                    best_clf = classifier
-                    best_precision = current_precision
+            #best_overall_model= clfs[best_model]
+            #best = best_overall_model.set(**best_params)
+            print("--> my best clf is:", best_model)
+                
+            print("="*60)
+            #print('my final best clf is:', best)
+                
+                # label_dict[best] = best_perform
+                # print(label_dict)
+                    
+            # for classifier in label_dict:
+
+            #     current_score = label_dict[classifier]['precision']
+            #     if current_score > best_overall_score:
+            #         best_overall_clf = classifier
+            #         best_overall_score= current_score
        
-            y_full_predict = classify(best_clf, x_train, y_train, x_full)
+            y_full_predict = classify(best_model, x_train, y_train, x_full)
             df_full[label] = y_full_predict
 
     df_full.to_csv('result.csv')
