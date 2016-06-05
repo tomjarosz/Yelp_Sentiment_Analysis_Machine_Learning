@@ -33,11 +33,11 @@ def run_models():
             'NBGaussian': GaussianNB(),
             'NBBernoulli': BernoulliNB(alpha=1, binarize=0.0, fit_prior=True, class_prior=None)}
 
-    grid = {'SVM' :{'C' :[0.0001,0.01,1,10],'penalty':['l1', 'l2']},
+    grid = {'SVM' :{'C' :[0.0001,0.01,10,1],'penalty':['l1', 'l2']},
             'SGD': { 'loss': ['hinge','log','perceptron'], 'penalty': ['l2','l1','elasticnet']},
             'NBMultinomial': {'alpha': [0.0001, 0.01, 1, 2]},
             'NBGaussian' : {},
-            'NBBernoulli': {'alpha': [0.0001, 0.01, 1, 2]}}
+            'NBBernoulli': {'alpha': [ 0.01, 1, 2, 0.0001]}}
 
 
     labels = ['complaint', 'compliments', 'suggestion for user', 'suggestion for business']
@@ -48,7 +48,7 @@ def run_models():
         for label in labels:
 
             best_model = None
-            best_params = None
+            #best_params = None
             best_score = -1
 
             print(label)
@@ -62,7 +62,7 @@ def run_models():
                 # best_precision = -1
                 # best_perform = None
                 # best_param = None
-                current_model = models[index]
+                #current_model = models[index]
 
                 parameter_values= grid[models[index]]
                 #temp = dict()
@@ -90,7 +90,7 @@ def run_models():
                         #best_params = p
                         best_model = clf
                         print("+++++Best model has been changed to:", best_model)
-                        print("+++++Best param has been changed to:", best_params)
+                        #print("+++++Best param has been changed to:", best_params)
 
             #best_overall_model= clfs[best_model]
             #best = best_overall_model.set(**best_params)
