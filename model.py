@@ -19,7 +19,6 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 # Creating a dictionary of lexicon associated with our labels to use as features
 # Sourced heavily from https://github.com/rayidghani/amsterdam
-models_dict['complaint'] = complaint_kwords
 labels = ['complaint', 'compliment', 'suggestion for user', 'suggestion for business']
 models_dict = {}
 
@@ -28,6 +27,7 @@ compliments_kwords = list(set(open("data/word_list/compliments.txt").read().spli
 suggestions_busn_kwords = list(set(open("data/word_list/suggestion_busn.txt").read().splitlines()))
 suggestions_user_kwords = list(set(open("data/word_list/suggestion_user.txt").read().splitlines()))
 
+models_dict['complaint'] = complaint_kwords
 models_dict['compliments'] = compliments_kwords
 models_dict['suggestion for user'] = suggestions_user_kwords
 models_dict['suggestion for business'] = suggestions_busn_kwords
@@ -95,7 +95,7 @@ def get_stopwords():
 
 stopwords = get_stopwords()
 df_labeled = read_data("data/training_scored.csv")
-df_full = read_data("data/training_scored.csv")
+df_full = read_data("data/unlabeledA.csv")
 
 #df_full = read_data("data/unlabeled.csv")
 #df_full = read_data("data/manual_train.csv", False)
