@@ -1,7 +1,4 @@
 # Author: Sirui Feng
-# Sentence split on periods.
-
-
 '''
 This file splits each review on periods and conjuctions.
 '''
@@ -16,11 +13,17 @@ from word_stemmer import word_stemmer
 public_utilities_path = 'data/public_utilities.json'
 
 def split_period(review):
+	'''
+	Splits sentences on periods.
+	'''
 	p = re.compile(r'[^\s\.][^\.\n]+')
 	sentences = p.findall(review)
 	return sentences
 
 def split_conjunctions(sentence):
+	'''
+	Splits each sentence on conjuctions.
+	'''
 	conjuctions = [';', 'for', 'and', 'nor', 'but', 'or', 'yet', 'so']
 	clause = re.split('; | and | nor | but | or | yet | so | although | despite | though | however | on the other hand | in contrast ', sentence)
 	clause = [x.strip() for x in clause]
@@ -28,6 +31,9 @@ def split_conjunctions(sentence):
 	return clause
 
 def gen_sentences():
+	'''
+	Reads in the sentences and splits on periods and conjuctions.
+	'''
 	with open(public_utilities_path) as datafile:
 		with open('data/full_data.csv', 'w') as outfile:
 			writer = csv.DictWriter(outfile, fieldnames = ['review_id', \

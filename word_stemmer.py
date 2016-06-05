@@ -1,4 +1,5 @@
-#Author: Tom
+# Author: Tom
+# This file stems the sentence.
 
 from nltk.stem.porter import *
 
