@@ -15,7 +15,7 @@ import time
 from sklearn.cross_validation import cross_val_predict
 
 def cross_validation(clf, X, y_true):
-    k = 7
+    k = 10
     evaluation_dict = dict()
     start_time = time.time()
     y_predicted = cross_val_predict(clf, X, y_true, cv=k)
