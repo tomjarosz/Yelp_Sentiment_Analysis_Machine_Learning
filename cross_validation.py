@@ -15,6 +15,10 @@ import time
 from sklearn.cross_validation import cross_val_predict
 
 def cross_validation(clf, X, y_true):
+    '''
+    Performs cross validation on the classifier, X and validates on y_true.
+    Generates a dictionary for accuracy_baseline, accuracy, precision, area under the precision-recall curve, and runtime.
+    '''
     k = 10
     evaluation_dict = dict()
     start_time = time.time()

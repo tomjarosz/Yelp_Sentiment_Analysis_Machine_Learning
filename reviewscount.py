@@ -1,3 +1,5 @@
+# This file generates summary statistics for review dataset.
+
 import json
 from textInsighters_business_summary import *
 

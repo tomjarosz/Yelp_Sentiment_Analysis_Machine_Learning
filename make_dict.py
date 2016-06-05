@@ -6,6 +6,10 @@ from run_models import *
 
 def populate_dict(filename):
 
+    '''
+    Generates dictionary for the classified data.
+    '''
+
     with open(filename, 'r') as csvfile:
         classified_reviews = csv.reader(csvfile)
         next(classified_reviews)
