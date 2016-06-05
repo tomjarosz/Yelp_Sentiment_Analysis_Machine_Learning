@@ -1,345 +1,345 @@
-Label,Classifier,Accuracy_Baseline,Accuracy,Precision,AUC,Runtime
+Label,Classifier,Accuracy_Baseline,Accuracy,Precision,AUC,Runtime (secs),Runtime (minutes)
+complaint,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.725211,0.677748,0.676406,0.676406,68.642603,1.144043
+complaint,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.725211,0.619331,0.666533,0.666533,69.884844,1.164747
+complaint,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.725211,0.723482,0.523999,0.523999,69.491126,1.158185
+complaint,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.725211,0.727517,0.504847,0.504847,69.020379,1.150340
+complaint,GaussianNB(),0.725211,0.464450,0.618385,0.618385,94.916008,1.581933
 complaint,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.725211375865,0.5,0.5,19.792072057724
+     verbose=0)",0.725211,0.725211,0.500000,0.500000,19.792072,0.329868
 complaint,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.762298232129,0.583987051634,0.583987051634,20.199882984161377
+     verbose=0)",0.725211,0.762298,0.583987,0.583987,20.199883,0.336665
 complaint,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.822444273636,0.738815079992,0.738815079992,19.99651789665222
+     verbose=0)",0.725211,0.822444,0.738815,0.738815,19.996518,0.333275
 complaint,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.824365872406,0.741225758873,0.741225758873,20.5763258934021
-complaint,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.822059953882,0.758963611905,0.758963611905,30.35692811012268
-complaint,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.834934665642,0.765234156411,0.765234156411,21.76861810684204
+     verbose=0)",0.725211,0.824366,0.741226,0.741226,20.576326,0.342939
 complaint,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.831475787855,0.765455397808,0.765455397808,22.002869844436646
+     verbose=0)",0.725211,0.831476,0.765455,0.765455,22.002870,0.366714
 complaint,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.837048424289,0.767125825949,0.767125825949,21.31067204475403
-complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.658724058417,0.540374516845,0.540374516845,40.537672996520996
-complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.684857801691,0.619415878239,0.619415878239,72.90748286247253
+     verbose=0)",0.725211,0.837048,0.767126,0.767126,21.310672,0.355178
+complaint,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
+     verbose=0)",0.725211,0.822060,0.758964,0.758964,30.356928,0.505949
+complaint,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+     verbose=0)",0.725211,0.834935,0.765234,0.765234,21.768618,0.362810
+complaint,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.725211,0.638739,0.635613,0.635613,23.039694,0.383995
+complaint,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.725211,0.596080,0.609893,0.609893,23.065470,0.384424
+complaint,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.725211,0.728094,0.529350,0.529350,22.981474,0.383025
+complaint,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.725211,0.725211,0.500000,0.500000,23.032756,0.383879
 complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.642774788624,0.567164923047,0.567164923047,117.90306305885315
+       verbose=0, warm_start=False)",0.725211,0.642775,0.567165,0.567165,117.903063,1.965051
 complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.640661029977,0.547248564896,0.547248564896,40.63430714607239
-complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
        penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.671983089931,0.638119299884,0.638119299884,73.38217401504517
+       verbose=0, warm_start=False)",0.725211,0.684858,0.619416,0.619416,72.907483,1.215125
+complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.725211,0.658724,0.540375,0.540375,40.537673,0.675628
 complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.671790930054,0.57262017262,0.57262017262,3719.504630088806
+       verbose=0, warm_start=False)",0.725211,0.671791,0.572620,0.572620,3719.504630,61.991744
 complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.658147578786,0.548012162718,0.548012162718,40.69191813468933
-complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
        penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.736740968486,0.580699374817,0.580699374817,72.83088898658752
+       verbose=0, warm_start=False)",0.725211,0.671983,0.638119,0.638119,73.382174,1.223036
+complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.725211,0.640661,0.547249,0.547249,40.634307,0.677238
 complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.725211375865,0.632205995388,0.554014771662,0.554014771662,118.93830299377441
-complaint,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.725211375865,0.638739431207,0.635612823848,0.635612823848,23.03969407081604
-complaint,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.725211375865,0.596079938509,0.609892862834,0.609892862834,23.065469980239868
-complaint,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.725211375865,0.72809377402,0.529350061703,0.529350061703,22.981473922729492
-complaint,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.725211375865,0.725211375865,0.5,0.5,23.032755851745605
-complaint,GaussianNB(),0.725211375865,0.464450422752,0.618384715444,0.618384715444,94.91600799560547
-complaint,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.725211375865,0.619331283628,0.666533440063,0.666533440063,69.88484382629395
-complaint,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.725211375865,0.723481936972,0.523998762234,0.523998762234,69.49112582206726
-complaint,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.725211375865,0.727517294389,0.504847298965,0.504847298965,69.02037906646729
-complaint,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.725211375865,0.677747886241,0.676405920524,0.676405920524,68.64260292053223
+       verbose=0, warm_start=False)",0.725211,0.632206,0.554015,0.554015,118.938303,1.982305
+complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.725211,0.736741,0.580699,0.580699,72.830889,1.213848
+complaint,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.725211,0.658148,0.548012,0.548012,40.691918,0.678199
+compliments,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.578593,0.702537,0.700637,0.700637,75.786443,1.263107
+compliments,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.578593,0.709070,0.712787,0.712787,76.742108,1.279035
+compliments,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.578593,0.664105,0.610193,0.610193,76.496955,1.274949
+compliments,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.578593,0.591084,0.515935,0.515935,76.205361,1.270089
+compliments,GaussianNB(),0.578593,0.692736,0.704618,0.704618,89.989004,1.499817
 compliments,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.5785933897,0.500247761552,0.500247761552,19.992599964141846
+     verbose=0)",0.578593,0.578593,0.500248,0.500248,19.992600,0.333210
 compliments,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.701383551115,0.693942396651,0.693942396651,19.978296995162964
+     verbose=0)",0.578593,0.701384,0.693942,0.693942,19.978297,0.332972
 compliments,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.749615680246,0.742993807627,0.742993807627,20.515801191329956
+     verbose=0)",0.578593,0.749616,0.742994,0.742994,20.515801,0.341930
 compliments,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.759992313605,0.753261676331,0.753261676331,20.505300998687744
-compliments,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.772674865488,0.760505067072,0.760505067072,30.867635011672974
-compliments,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.798039969254,0.78812321079,0.78812321079,21.45083498954773
+     verbose=0)",0.578593,0.759992,0.753262,0.753262,20.505301,0.341755
 compliments,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.797079169869,0.788407848832,0.788407848832,21.898728847503662
+     verbose=0)",0.578593,0.797079,0.788408,0.788408,21.898729,0.364979
 compliments,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.800153727902,0.79050730995,0.79050730995,21.3006649017334
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.583205226749,0.567412344129,0.567412344129,42.105940103530884
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.614527286703,0.609779039403,0.609779039403,75.5139319896698
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.558416602613,0.565935694368,0.565935694368,126.04938578605652
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.563604919293,0.557721475126,0.557721475126,42.3041729927063
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
-       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.61471944658,0.621899592057,0.621899592057,75.24351000785828
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
-       penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.602997694081,0.579808826823,0.579808826823,129.57060289382935
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.531129900077,0.562424174137,0.562424174137,42.14193511009216
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
-       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.567448116833,0.586438189929,0.586438189929,75.32706689834595
-compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
-       penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.5785933897,0.601460415065,0.571419160297,0.571419160297,126.74115085601807
-compliments,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.5785933897,0.568216756341,0.584810626729,0.584810626729,23.049005031585693
-compliments,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.5785933897,0.547079169869,0.565181581503,0.565181581503,23.98421883583069
-compliments,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.5785933897,0.553996925442,0.550781274255,0.550781274255,22.947598934173584
-compliments,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.5785933897,0.57282859339,0.553242230987,0.553242230987,22.75157880783081
-compliments,GaussianNB(),0.5785933897,0.692736356649,0.704618329842,0.704618329842,89.98900389671326
-compliments,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.5785933897,0.709069946195,0.712786964592,0.712786964592,76.74210810661316
-compliments,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.5785933897,0.664104534973,0.610192783021,0.610192783021,76.4969551563263
-compliments,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.5785933897,0.591083781706,0.515934808423,0.515934808423,76.2053611278534
-compliments,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.5785933897,0.702536510377,0.700637259067,0.700637259067,75.78644299507141
-suggestion for user,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
+     verbose=0)",0.578593,0.800154,0.790507,0.790507,21.300665,0.355011
+compliments,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924481168332,0.5,0.5,20.240731954574585
-suggestion for user,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
+     verbose=0)",0.578593,0.772675,0.760505,0.760505,30.867635,0.514461
+compliments,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924481168332,0.5,0.5,19.290709972381592
-suggestion for user,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924481168332,0.5,0.5,19.306206941604614
-suggestion for user,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924481168332,0.5,0.5,19.916411876678467
-suggestion for user,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.919869331284,0.533724136217,0.533724136217,25.15434980392456
-suggestion for user,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924673328209,0.515292298237,0.515292298237,21.64276099205017
-suggestion for user,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924289008455,0.526767802581,0.526767802581,21.417871952056885
-suggestion for user,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924481168332,0.508178352937,0.508178352937,21.260602951049805
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.906418139892,0.498409074201,0.498409074201,35.33357000350952
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.854727132975,0.491482358865,0.491482358865,64.34905695915222
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+     verbose=0)",0.578593,0.798040,0.788123,0.788123,21.450835,0.357514
+compliments,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.578593,0.568217,0.584811,0.584811,23.049005,0.384150
+compliments,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.578593,0.547079,0.565182,0.565182,23.984219,0.399737
+compliments,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.578593,0.553997,0.550781,0.550781,22.947599,0.382460
+compliments,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.578593,0.572829,0.553242,0.553242,22.751579,0.379193
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.845887778632,0.493711664797,0.493711664797,84.3069999217987
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       verbose=0, warm_start=False)",0.578593,0.558417,0.565936,0.565936,126.049386,2.100823
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.835511145273,0.503287895689,0.503287895689,35.67128801345825
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
        penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.891621829362,0.498584932854,0.498584932854,65.56177496910095
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       verbose=0, warm_start=False)",0.578593,0.614527,0.609779,0.609779,75.513932,1.258566
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.578593,0.583205,0.567412,0.567412,42.105940,0.701766
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.91237509608,0.496957513078,0.496957513078,84.48885607719421
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       verbose=0, warm_start=False)",0.578593,0.602998,0.579809,0.579809,129.570603,2.159510
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.838585703305,0.500277407108,0.500277407108,35.63181018829346
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
        penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.915449654112,0.496283696766,0.496283696766,64.74053001403809
-suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       verbose=0, warm_start=False)",0.578593,0.614719,0.621900,0.621900,75.243510,1.254059
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.578593,0.563605,0.557721,0.557721,42.304173,0.705070
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.924481168332,0.855111452729,0.499868568796,0.499868568796,83.85165405273438
-suggestion for user,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.924481168332,0.447924673328,0.550698066295,0.550698066295,22.325674057006836
-suggestion for user,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.924481168332,0.416986933128,0.536302250515,0.536302250515,22.614004135131836
-suggestion for user,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.924481168332,0.924481168332,0.5,0.5,22.45835304260254
-suggestion for user,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.924481168332,0.924481168332,0.5,0.5,22.3790180683136
-suggestion for user,GaussianNB(),0.924481168332,0.109915449654,0.518603200998,0.518603200998,87.3032341003418
-suggestion for user,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.924481168332,0.422367409685,0.623332450073,0.623332450073,75.66840195655823
-suggestion for user,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.924481168332,0.921214450423,0.499401551682,0.499401551682,75.68950390815735
-suggestion for user,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.924481168332,0.923712528824,0.499584286011,0.499584286011,75.46264600753784
-suggestion for user,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.924481168332,0.61337432744,0.635507157844,0.635507157844,75.76204204559326
+       verbose=0, warm_start=False)",0.578593,0.601460,0.571419,0.571419,126.741151,2.112353
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.578593,0.567448,0.586438,0.586438,75.327067,1.255451
+compliments,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.578593,0.531130,0.562424,0.562424,42.141935,0.702366
+suggestion for business,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.960031,0.541891,0.584019,0.584019,79.782984,1.329716
+suggestion for business,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.960031,0.325711,0.570491,0.570491,78.824504,1.313742
+suggestion for business,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.960031,0.958878,0.499400,0.499400,94.140328,1.569005
+suggestion for business,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.960031,0.959839,0.499900,0.499900,88.309067,1.471818
+suggestion for business,GaussianNB(),0.960031,0.058609,0.509708,0.509708,99.927498,1.665458
 suggestion for business,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.96003074558,0.5,0.5,20.38566493988037
+     verbose=0)",0.960031,0.960031,0.500000,0.500000,20.385665,0.339761
 suggestion for business,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.96003074558,0.5,0.5,19.889891147613525
+     verbose=0)",0.960031,0.960031,0.500000,0.500000,19.889891,0.331498
 suggestion for business,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.96003074558,0.5,0.5,19.37978196144104
+     verbose=0)",0.960031,0.960031,0.500000,0.500000,19.379782,0.322996
 suggestion for business,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.96003074558,0.5,0.5,21.979023933410645
-suggestion for business,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.958301306687,0.506010577693,0.506010577693,23.303327083587646
-suggestion for business,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.959454265949,0.504307291987,0.504307291987,25.306704998016357
+     verbose=0)",0.960031,0.960031,0.500000,0.500000,21.979024,0.366317
 suggestion for business,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.959646425826,0.506711138141,0.506711138141,20.4825439453125
+     verbose=0)",0.960031,0.959646,0.506711,0.506711,20.482544,0.341376
 suggestion for business,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.960222905457,0.502403846154,0.502403846154,22.473175048828125
-suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.959262106072,0.499599679744,0.499599679744,34.36029100418091
-suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
-       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.95618754804,0.502605930899,0.502605930899,62.499722957611084
+     verbose=0)",0.960031,0.960223,0.502404,0.502404,22.473175,0.374553
+suggestion for business,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
+     verbose=0)",0.960031,0.958301,0.506011,0.506011,23.303327,0.388389
+suggestion for business,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+     verbose=0)",0.960031,0.959454,0.504307,0.504307,25.306705,0.421778
+suggestion for business,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.960031,0.474251,0.567221,0.567221,22.614292,0.376905
+suggestion for business,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.960031,0.443505,0.562727,0.562727,22.784077,0.379735
+suggestion for business,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.960031,0.960031,0.500000,0.500000,22.637495,0.377292
+suggestion for business,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.960031,0.960031,0.500000,0.500000,22.479134,0.374652
 suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.958685626441,0.499299439552,0.499299439552,73.20799493789673
+       verbose=0, warm_start=False)",0.960031,0.958686,0.499299,0.499299,73.207995,1.220133
 suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.949654112221,0.499203208721,0.499203208721,34.70331382751465
-suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
        penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.89950038432,0.503031271171,0.503031271171,62.50587701797485
+       verbose=0, warm_start=False)",0.960031,0.956188,0.502606,0.502606,62.499723,1.041662
+suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.960031,0.959262,0.499600,0.499600,34.360291,0.572672
 suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.957340507302,0.500902645193,0.500902645193,73.16200709342957
+       verbose=0, warm_start=False)",0.960031,0.957341,0.500903,0.500903,73.162007,1.219367
 suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
-       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.879900076864,0.504341935087,0.504341935087,34.3083438873291
-suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
-       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
-       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
        penalty='l1', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.872790161414,0.496031440537,0.496031440537,62.37366700172424
+       verbose=0, warm_start=False)",0.960031,0.899500,0.503031,0.503031,62.505877,1.041765
+suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.960031,0.949654,0.499203,0.499203,34.703314,0.578389
 suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
        eta0=0.0, fit_intercept=True, l1_ratio=0.15,
        learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
        penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
-       verbose=0, warm_start=False)",0.96003074558,0.895465026902,0.489410759377,0.489410759377,74.07587599754333
-suggestion for business,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.96003074558,0.47425057648,0.56722108456,0.56722108456,22.61429190635681
-suggestion for business,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.96003074558,0.443504996157,0.562727104761,0.562727104761,22.784076929092407
-suggestion for business,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.96003074558,0.96003074558,0.5,0.5,22.637495040893555
-suggestion for business,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.96003074558,0.96003074558,0.5,0.5,22.47913384437561
-suggestion for business,GaussianNB(),0.96003074558,0.0586087624904,0.509707766213,0.509707766213,99.92749786376953
-suggestion for business,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.96003074558,0.325710991545,0.570491008191,0.570491008191,78.8245038986206
-suggestion for business,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.96003074558,0.958877786318,0.499399519616,0.499399519616,94.14032793045044
-suggestion for business,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.96003074558,0.959838585703,0.499899919936,0.499899919936,88.30906677246094
-suggestion for business,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.96003074558,0.54189085319,0.584019138388,0.584019138388,79.7829840183258
+       verbose=0, warm_start=False)",0.960031,0.895465,0.489411,0.489411,74.075876,1.234598
+suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.960031,0.872790,0.496031,0.496031,62.373667,1.039561
+suggestion for business,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.960031,0.879900,0.504342,0.504342,34.308344,0.571806
+suggestion for user,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.924481,0.613374,0.635507,0.635507,75.762042,1.262701
+suggestion for user,"BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)",0.924481,0.422367,0.623332,0.623332,75.668402,1.261140
+suggestion for user,"BernoulliNB(alpha=1, binarize=0.0, class_prior=None, fit_prior=True)",0.924481,0.921214,0.499402,0.499402,75.689504,1.261492
+suggestion for user,"BernoulliNB(alpha=2, binarize=0.0, class_prior=None, fit_prior=True)",0.924481,0.923713,0.499584,0.499584,75.462646,1.257711
+suggestion for user,GaussianNB(),0.924481,0.109915,0.518603,0.518603,87.303234,1.455054
+suggestion for user,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924481,0.500000,0.500000,20.240732,0.337346
+suggestion for user,"LinearSVC(C=0.0001, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924481,0.500000,0.500000,19.290710,0.321512
+suggestion for user,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924481,0.500000,0.500000,19.306207,0.321770
+suggestion for user,"LinearSVC(C=0.01, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924481,0.500000,0.500000,19.916412,0.331940
+suggestion for user,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924289,0.526768,0.526768,21.417872,0.356965
+suggestion for user,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924481,0.508178,0.508178,21.260603,0.354343
+suggestion for user,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l1', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.919869,0.533724,0.533724,25.154350,0.419239
+suggestion for user,"LinearSVC(C=10, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+     multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+     verbose=0)",0.924481,0.924673,0.515292,0.515292,21.642761,0.360713
+suggestion for user,"MultinomialNB(alpha=0.0001, class_prior=None, fit_prior=True)",0.924481,0.447925,0.550698,0.550698,22.325674,0.372095
+suggestion for user,"MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)",0.924481,0.416987,0.536302,0.536302,22.614004,0.376900
+suggestion for user,"MultinomialNB(alpha=1, class_prior=None, fit_prior=True)",0.924481,0.924481,0.500000,0.500000,22.458353,0.374306
+suggestion for user,"MultinomialNB(alpha=2, class_prior=None, fit_prior=True)",0.924481,0.924481,0.500000,0.500000,22.379018,0.372984
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.845888,0.493712,0.493712,84.307000,1.405117
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.854727,0.491482,0.491482,64.349057,1.072484
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='hinge', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.906418,0.498409,0.498409,35.333570,0.588893
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.912375,0.496958,0.496958,84.488856,1.408148
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.891622,0.498585,0.498585,65.561775,1.092696
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='log', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.835511,0.503288,0.503288,35.671288,0.594521
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='elasticnet', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.855111,0.499869,0.499869,83.851654,1.397528
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l1', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.915450,0.496284,0.496284,64.740530,1.079009
+suggestion for user,"SGDClassifier(alpha=0.0001, average=False, class_weight=None, epsilon=0.1,
+       eta0=0.0, fit_intercept=True, l1_ratio=0.15,
+       learning_rate='optimal', loss='perceptron', n_iter=5, n_jobs=1,
+       penalty='l2', power_t=0.5, random_state=None, shuffle=True,
+       verbose=0, warm_start=False)",0.924481,0.838586,0.500277,0.500277,35.631810,0.593864
