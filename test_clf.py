@@ -67,7 +67,7 @@ def run_models():
             #print("="*60)
             y_full_predict = classify(best_model, x_train, y_train, x_full)
             df_full[label] = y_full_predict
-    df_full.to_csv('result4AA.csv')
+    df_full.to_csv('result8a.csv')
   
 if __name__ == '__main__':
     run_models()
