@@ -46,14 +46,8 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Company
-                        <strong>blog</strong>
-                    </h2>
-                    <hr>
                 </div>
                 <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-1.jpg" alt="">
                     <form id="user_input_form" method="post" action="http://127.0.0.1:8000/textinsighters/suggestion">
                         {% csrf_token %}
                         {{ form }}
@@ -62,40 +56,33 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                         <br>
                     </h2>
                     <div id="div2">
-                        <p id="p1">Compliments</p>
                     </div>
-                    <button onclick="compliments()">Click for More</button>
+                    <button onclick="compliments()">More Details</button>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-2.jpg" alt="">
                     <h2>Complaints
                         <br>
                     </h2>
                     <div id="div1">
-                        <p id="p1">Complaints</p>
                     </div>
-                    <button onclick="complaints()">Click for More</button>
+                    <button onclick="complaints()">More Details</button>
                     <hr>
                 </div>
                 <div id= "div2" class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
                     <h2>Suggestions for Institution
                         <br>
                     </h2>
                     <div id="div3">
-                        <p id="p1">Suggestions for business</p>
                     </div>
                     <button onclick="sugg_buss()">Click for More</button>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
                     <h2>Suggestions for Users
                         <br>
                     </h2>
                     <div id="div4">         
-                        <p id="p1">Suggestion for user</p>
                     </div>
                     <button onclick="sugg_users()">Click for More</button>
                     <hr>
