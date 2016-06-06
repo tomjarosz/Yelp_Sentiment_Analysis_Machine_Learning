@@ -2,20 +2,20 @@ Label,Classifier,Accuracy_Baseline,Accuracy,Precision,AUC,Runtime
 complaint,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.725211375865,0.831475787855,0.761763594117,0.761763594117,16.713579177856445
-complaint,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.725211375865,0.677363566487,0.675923784747,0.675923784747,50.70689034461975
+     verbose=0)",0.725211375865,0.831091468101,0.76128145834,0.76128145834,17.065025091171265
+complaint,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.725211375865,0.677363566487,0.675923784747,0.675923784747,53.49064326286316
 compliments,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.5785933897,0.797271329746,0.787397039249,0.787397039249,17.149224519729614
-compliments,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.5785933897,0.702536510377,0.700637259067,0.700637259067,50.441283226013184
+     verbose=0)",0.5785933897,0.797847809377,0.78801909339,0.78801909339,16.895339012145996
+compliments,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.5785933897,0.702536510377,0.700637259067,0.700637259067,53.21507263183594
 suggestion for user,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.924481168332,0.924481168332,0.508178352937,0.508178352937,16.950104475021362
-suggestion for user,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.924481168332,0.613566487317,0.635611086341,0.635611086341,49.69159698486328
+     verbose=0)",0.924481168332,0.924481168332,0.508178352937,0.508178352937,17.105669260025024
+suggestion for user,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.924481168332,0.613566487317,0.635611086341,0.635611086341,53.25628352165222
 suggestion for business,"LinearSVC(C=1, class_weight=None, dual=False, fit_intercept=True,
      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
      multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
-     verbose=0)",0.96003074558,0.960222905457,0.502403846154,0.502403846154,17.862427711486816
-suggestion for business,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.96003074558,0.54189085319,0.584019138388,0.584019138388,49.40291237831116
+     verbose=0)",0.96003074558,0.960222905457,0.502403846154,0.502403846154,17.520435094833374
+suggestion for business,"BernoulliNB(alpha=0.0001, binarize=0.0, class_prior=None, fit_prior=True)",0.96003074558,0.54189085319,0.584019138388,0.584019138388,52.43451118469238
