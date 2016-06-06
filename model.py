@@ -95,7 +95,7 @@ def get_stopwords():
 
 stopwords = get_stopwords()
 df_labeled = read_data("data/training_scored.csv")
-df_full = read_data("data/unlabeled2A.csv")
+df_full = read_data("data/unlabeled4a.csv")
 df_unlabeled = read_data("data/unlabeled.csv")
 #df_full = read_data("data/manual_train.csv", False)
 
@@ -137,7 +137,7 @@ def feature_counts(df, category):
 	Generates a count of how many institutions exist in the category that the institution being reviewed is a part of
 	'''
 
-	ct_per_cat = df_unlabeled.groupby(category).size()
+	ct_per_cat = df_full.groupby(category).size()
 	l_ct_per_cat = []
 
 	for cat_id in df[category]:
