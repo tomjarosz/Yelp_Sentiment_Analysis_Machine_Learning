@@ -4,7 +4,7 @@ This file is a machine learning pipeline that picks the best classification mode
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import urllib.request
+#import urllib.request
 import json
 import numpy as np
 import csv
@@ -45,29 +45,29 @@ def run_models():
         for label in labels:
             best_model = None
             best_score = -1
-            print(label)
+            #print(label)
             x_train, y_train, x_full, x_hide, y_hide = vectorize_X_Y(df_labeled, df_full, label, models_dict, stopwords, tfidf=True)
             
             for index,clf in enumerate([clfs[x] for x in models]):
                 parameter_values= grid[models[index]]
                 for p in ParameterGrid(parameter_values):
                     clf.set_params(**p)
-                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                    print(clf)
+                    #print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    #print(clf)
                     temp = cross_validation(clf, x_train, y_train)
-                    print(temp)
+                    #print(temp)
                     w.writerow([label, clf, temp["accuracy_baseline"], \
                     temp['accuracy'], temp['roc_auc'], \
                     temp['roc_auc'], temp['runtime']])
                     if temp['roc_auc'] > best_score:
                         best_score = temp['roc_auc']
                         best_model = clf
-                        print("+++++Best model has been changed to:", best_model)
-            print("--> my best clf is:", best_model)
-            print("="*60)
+                        #print("+++++Best model has been changed to:", best_model)
+            #print("--> my best clf is:", best_model)
+            #print("="*60)
             y_full_predict = classify(best_model, x_train, y_train, x_full)
             df_full[label] = y_full_predict
-    df_full.to_csv('result.csv')
+    df_full.to_csv('result2A.csv')
   
 if __name__ == '__main__':
     run_models()
