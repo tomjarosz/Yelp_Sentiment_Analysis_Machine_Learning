@@ -54,83 +54,24 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                 </div>
                 <div class="col-lg-12 text-center">
                     <img class="img-responsive img-border img-full" src="img/slide-1.jpg" alt="">
-                    <h2>Compliments
-                        <br>
-                    </h2>
-                    <div id="div2">
-                        <p id="p1">Compliments</p>
-                    </div>
-
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
-                    <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-2.jpg" alt="">
-                    <h2>Complaints
+                    <h2>Suggestion for User 
                         <br>
                     </h2>
                     <div id="div1">
-                        <p id="p1">Complaints</p>
+                        <p id="p1">Suggestions</p>
                     </div>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
-                    <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
-                    <h2>Suggestions for Institution
-                        <br>
-                    </h2>
-                    <div id="div3">
-                        <p id="p1">Suggestions for business</p>
-                    </div>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
-                    <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
-                    <h2>Suggestions for Users
-                        <br>
-                    </h2>
-                    <div id="div4">         
-                        <p id="p1">Suggestion for user</p>
-                    </div>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
                     <hr>
                 </div>
                 
-                <script>
+                <script type="text/javascript" language="javascript">
 
                 function myFunction() {
-
-                    {% for line in complaint %}
-                    var para = document.createElement("p");
-                    var node = document.createTextNode( ' {{line}} ' );
-                    para.appendChild(node);
-                    var element = document.getElementById("div1");
-                    element.appendChild(para);
-                    {% endfor %}
-
-                    {% for line in compliments %}
-                    var para = document.createElement("p");
-                    var node = document.createTextNode( ' {{line}} ' );
-                    para.appendChild(node);
-                    var element = document.getElementById("div2");
-                    element.appendChild(para);
-                    {% endfor %}
-
-                    {% for line in buss_sugg %}
-                    var para = document.createElement("p");
-                    var node = document.createTextNode( ' {{line}} ' );
-                    para.appendChild(node);
-                    var element = document.getElementById("div3");
-                    element.appendChild(para);
-                    {% endfor %}
 
                     {% for line in user_sugg %}
                     var para = document.createElement("p");
                     var node = document.createTextNode( ' {{line}} ' );
                     para.appendChild(node);
-                    var element = document.getElementById("div4");
+                    var element = document.getElementById("div1");
                     element.appendChild(para);
                     {% endfor %}
                     

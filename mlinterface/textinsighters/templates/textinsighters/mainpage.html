@@ -107,6 +107,8 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                     <form id="user_input_form" method="post" action="http://127.0.0.1:8000/textinsighters/suggestion">
                         {% csrf_token %}
                         {{ form }}
+                        {{ form.errors }}
+                        {{ form.non_field_errors }}
                         <datalist id="browsers">
                             <option value="McCormick-Stillman Railroad Park">
                             <option value="Las Vegas Mini Gran Prix Family Fun Center">

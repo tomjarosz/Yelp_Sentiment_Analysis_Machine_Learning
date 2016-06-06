@@ -54,14 +54,17 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                 </div>
                 <div class="col-lg-12 text-center">
                     <img class="img-responsive img-border img-full" src="img/slide-1.jpg" alt="">
+                    <form id="user_input_form" method="post" action="http://127.0.0.1:8000/textinsighters/suggestion">
+                        {% csrf_token %}
+                        {{ form }}
+                    </form>
                     <h2>Compliments
                         <br>
                     </h2>
                     <div id="div2">
                         <p id="p1">Compliments</p>
                     </div>
-
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button onclick="compliments()">Click for More</button>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -72,10 +75,10 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                     <div id="div1">
                         <p id="p1">Complaints</p>
                     </div>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button onclick="complaints()">Click for More</button>
                     <hr>
                 </div>
-                <div class="col-lg-12 text-center">
+                <div id= "div2" class="col-lg-12 text-center">
                     <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
                     <h2>Suggestions for Institution
                         <br>
@@ -83,7 +86,7 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                     <div id="div3">
                         <p id="p1">Suggestions for business</p>
                     </div>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button onclick="sugg_buss()">Click for More</button>
                     <hr>
                 </div>
                 <div class="col-lg-12 text-center">
@@ -94,14 +97,40 @@ Created by: Vi Nguyen, Sirui Feng, Turab Hassan, and Tom Tjarosz
                     <div id="div4">         
                         <p id="p1">Suggestion for user</p>
                     </div>
-                    <a href="#" class="btn btn-default btn-lg">Read More</a>
+                    <button onclick="sugg_users()">Click for More</button>
                     <hr>
                 </div>
                 
-                <script>
+                <script type="text/javascript" language="javascript">
+                
+                function compliments() {
+                    var buss_name = '{{ name }}';
+                    document.getElementById("id_user_input").value = buss_name;
+                    document.getElementById("id_case").value = 2;
+                    document.getElementById("user_input_form").submit();
+                } 
+                function complaints() {
+                    var buss_name = '{{ name }}';
+                    document.getElementById("id_user_input").value = buss_name;
+                    document.getElementById("id_case").value = 1;
+                    document.getElementById("user_input_form").submit();
+                }
 
-                function myFunction() {
+                function sugg_buss() {
+                    var buss_name = '{{ name }}';
+                    document.getElementById("id_user_input").value = buss_name;
+                    document.getElementById("id_case").value = 3;
+                    document.getElementById("user_input_form").submit();
+                }
 
+                function sugg_users() {
+                    var buss_name = '{{ name }}';
+                    document.getElementById("id_user_input").value = buss_name;
+                    document.getElementById("id_case").value = 4;
+                    document.getElementById("user_input_form").submit();
+                }
+
+                function myFunction() {    
                     {% for line in complaint %}
                     var para = document.createElement("p");
                     var node = document.createTextNode( ' {{line}} ' );
