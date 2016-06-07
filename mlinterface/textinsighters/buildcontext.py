@@ -1,3 +1,7 @@
+# Machine Learning Project: Textinsighters
+# Creates context for our html pages
+# Created by: Vi Nguyen, Sirui Feng, Turab Hassan, Tom Jarosz
+
 import urllib.parse
 from . import make_dict
 # import make_dict
@@ -11,8 +15,6 @@ import copy
 
 matching_dict = {}
 data = make_dict.populate_dict('textinsighters/result.csv') 
-# data = make_dict.populate_dict('../../result.csv')
-# print(data)
 
 def get_stopwords():
     '''
@@ -31,13 +33,14 @@ def get_stopwords():
 
 
 def make_matching_dict ():
-    with open('textinsighters/yelp_academic_dataset_business.json') as data_file:   
-    # with open('../../yelp_academic_dataset_business.json') as data_file:    
- 
+    '''
+    Extract all the business name and ids. Results have only Buss ids
+    Using this dict match the ids with the name
+    '''
+    with open('textinsighters/yelp_academic_dataset_business.json') as data_file:       
         for line in data_file:
             row = json.loads(line)
             matching_dict[row['name']] = row['business_id']
-            #print(matching_dict)
 
 def context_from_bussname(business_name, case):
     '''
@@ -45,14 +48,10 @@ def context_from_bussname(business_name, case):
     complaints, compliments and suggestions associated with
     it and return it to the views
     '''
-    #print(matching_dict)
     busn_id = matching_dict[business_name]
-    all_lines = data[busn_id]
-    #print('what we get ',all_lines) 
+    all_lines = data[busn_id] 
     results_dict = {}
-
     stopwords = get_stopwords()
-
     results_dict['complaints'] = all_lines['complaint']
     results_dict['compliments'] = all_lines['compliments']
     results_dict['user_sugg'] = all_lines['suggestion_for_user']
@@ -77,33 +76,9 @@ def context_from_bussname(business_name, case):
                 cv.fit(results)
                 for key_2 in cv.vocabulary_:
                     tag = pos_tag(word_tokenize(key_2))
-                    # print(tag)
                     if tag[0][1] == 'NN': # only tracking nouns
                         rv.append(key_2)
                 results_dict_copy[key] = rv
-        #print("results:", results_dict)
-        #print(results_dict_copy)
         return results_dict_copy['complaints'], results_dict_copy['compliments'], results_dict_copy['user_sugg'], results_dict_copy['buss_sugg']
 
 make_matching_dict()
-'''
-for key in data:
-    test = data[key]
-    sentences = test['compliments']
-    rv = []
-    # print(rv)
-    # print("length: {}".format(len(rv)))
-    if len(sentences) > 20:
-        cv = CountVectorizer(stop_words=stopwords, ngram_range=(1,3), analyzer='word', max_features = 20)
-        cv.fit_transform(sentences)
-        # counts = cv.transform(sentences)
-        # print(counts)
-        for key in cv.vocabulary_:
-            tag = pos_tag(word_tokenize(key))
-            # print(tag)
-            if tag[0][1] == 'NN':
-                rv.append(key)
-        # print(rv)
-        # print(sentences, "\n")
-# context_from_bussname('Animal Elegance')
-'''

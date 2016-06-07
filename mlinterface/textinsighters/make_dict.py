@@ -16,12 +16,12 @@ def populate_dict(filename):
             #print(row)
             if len(row) != 0:
 
-                business_id = row[2]
-                review = row[6]
-                complaint = int(row[7])
-                compliments = int(row[8])
-                suggestion_for_user = int(row[10])
-                suggestion_for_business = int(row[11])
+                business_id = row[3]
+                review = row[7]
+                complaint = int(row[9])
+                compliments = int(row[10])
+                suggestion_for_user = int(row[11])
+                suggestion_for_business = int(row[12])
 
                 if business_id not in reviews_dict:
                     reviews_dict[business_id] = dict()
